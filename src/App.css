@@ -1,0 +1,1449 @@
+/* ==========================================================================
+   DESIGN TOKENS & SYSTEM VARIABLES
+   ========================================================================== */
+.tw-root {
+  --bg: #080c10;
+  --surface: #0e141d;
+  --surface-alt: #141c28;
+  --surface-hover: #1b2636;
+  --surface-glass: rgba(14, 20, 29, 0.85);
+  --border: #212c3c;
+  --border-glow: rgba(139, 127, 240, 0.35);
+  --border-subtle: #17212e;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  
+  --violet: #8b7ff0;
+  --violet-glow: rgba(139, 127, 240, 0.22);
+  --violet-subtle: rgba(139, 127, 240, 0.1);
+  
+  --amber: #f0a84e;
+  --amber-glow: rgba(240, 168, 78, 0.22);
+  --amber-subtle: rgba(240, 168, 78, 0.1);
+  
+  --green: #5fd9a4;
+  --green-glow: rgba(95, 217, 164, 0.22);
+  --green-subtle: rgba(95, 217, 164, 0.1);
+
+  --cyan: #38bdf8;
+  --cyan-glow: rgba(56, 189, 248, 0.22);
+  --cyan-subtle: rgba(56, 189, 248, 0.1);
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.tw-root * {
+  box-sizing: border-box;
+}
+
+.tw-mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+.tw-display { font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+/* Accessibility Focus */
+.tw-root button:focus-visible,
+.tw-root a:focus-visible,
+.tw-root input:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.tw-root h1,
+.tw-root h2,
+.tw-root h3,
+.tw-root p {
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AMBIENT BACKGROUND & CYBER GRID
+   ========================================================================== */
+.tw-ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.tw-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at 50% 40%, black 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, black 30%, transparent 85%);
+}
+
+.tw-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.28;
+  pointer-events: none;
+  animation: tw-drift 22s ease-in-out infinite alternate;
+}
+
+.tw-orb-1 {
+  width: 550px;
+  height: 550px;
+  top: -100px;
+  left: 15%;
+  background: radial-gradient(circle, var(--violet) 0%, rgba(139, 127, 240, 0) 70%);
+  animation-duration: 25s;
+}
+
+.tw-orb-2 {
+  width: 450px;
+  height: 450px;
+  top: 35%;
+  right: -50px;
+  background: radial-gradient(circle, var(--amber) 0%, rgba(240, 168, 78, 0) 70%);
+  animation-duration: 30s;
+  animation-delay: -7s;
+}
+
+.tw-orb-3 {
+  width: 500px;
+  height: 500px;
+  bottom: 10%;
+  left: -80px;
+  background: radial-gradient(circle, var(--green) 0%, rgba(95, 217, 164) 0%, transparent 70%);
+  animation-duration: 28s;
+  animation-delay: -14s;
+}
+
+@keyframes tw-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.08); }
+  100% { transform: translate(-30px, -20px) scale(0.95); }
+}
+
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
+.tw-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.tw-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  text-decoration: none;
+  background: var(--surface-alt);
+  padding: 5px 12px 5px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tw-logo:hover {
+  border-color: var(--violet);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--violet-glow);
+}
+
+.tw-logo-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid rgba(139, 127, 240, 0.4);
+  box-shadow: 0 0 10px rgba(139, 127, 240, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tw-logo:hover .tw-logo-icon {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 0 14px rgba(139, 127, 240, 0.5);
+}
+
+/* Faint Logo Watermark Background */
+.tw-logo-watermark-hero {
+  position: absolute;
+  top: 60px;
+  right: 2%;
+  width: 600px;
+  height: 600px;
+  background-image: url('/logo.jpeg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  opacity: 0.055;
+  filter: grayscale(25%) contrast(115%);
+  mask-image: radial-gradient(circle at 50% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 20%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: tw-logo-pulse 24s ease-in-out infinite alternate;
+}
+
+.tw-logo-watermark-bottom {
+  position: absolute;
+  bottom: 8%;
+  left: -5%;
+  width: 520px;
+  height: 520px;
+  background-image: url('/logo.jpeg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  opacity: 0.038;
+  filter: grayscale(40%);
+  mask-image: radial-gradient(circle at 50% 50%, black 15%, transparent 68%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 15%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+  animation: tw-logo-pulse 28s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes tw-logo-pulse {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.045; }
+  50% { transform: translate(25px, 20px) scale(1.05) rotate(2deg); opacity: 0.065; }
+  100% { transform: translate(-20px, -15px) scale(0.97) rotate(-2deg); opacity: 0.045; }
+}
+
+.tw-navlinks-desktop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(14, 20, 29, 0.6);
+  padding: 4px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+}
+
+.tw-navlink {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tw-navlink:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tw-navlink.active {
+  color: var(--violet);
+  background: var(--violet-subtle);
+  font-weight: 600;
+}
+
+.tw-navlink.active::before {
+  content: '>';
+  color: var(--green);
+  font-weight: bold;
+}
+
+.tw-cv-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #160e03;
+  font-weight: 600;
+  font-size: 0.84rem;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.tw-cv-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.tw-cv-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--amber-glow);
+}
+
+.tw-cv-btn:hover::after {
+  transform: translateX(100%);
+}
+
+.tw-menu-btn {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  display: none;
+  padding: 8px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.tw-menu-btn:hover {
+  border-color: var(--violet);
+}
+
+.tw-mobile-menu {
+  position: sticky;
+  top: 61px;
+  z-index: 49;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px 22px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(14, 20, 29, 0.95);
+  backdrop-filter: blur(16px);
+  animation: tw-slide-down 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tw-slide-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tw-mobile-menu button {
+  text-align: left;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   SHELL & SECTIONS
+   ========================================================================== */
+.tw-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.tw-section {
+  padding: 96px 0;
+}
+
+.tw-sectionhead {
+  margin-bottom: 40px;
+}
+
+.tw-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--violet);
+  letter-spacing: 0.08em;
+  background: var(--violet-subtle);
+  border: 1px solid rgba(139, 127, 240, 0.25);
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.tw-h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.35rem);
+  font-weight: 700;
+  margin: 8px 0 6px;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.tw-dir-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   WINDOW CHROME & SPOTLIGHT CARDS
+   ========================================================================== */
+.tw-window {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.02);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Interactive Spotlight Glow Effect */
+.tw-spotlight {
+  position: relative;
+  --mouse-x: -200px;
+  --mouse-y: -200px;
+}
+
+.tw-spotlight::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mouse-x) var(--mouse-y),
+    rgba(139, 127, 240, 0.35),
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.tw-spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x) var(--mouse-y),
+    rgba(139, 127, 240, 0.06),
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.tw-spotlight:hover::before,
+.tw-spotlight:hover::after {
+  opacity: 1;
+}
+
+.tw-spotlight:hover {
+  border-color: rgba(139, 127, 240, 0.4);
+  box-shadow: 0 24px 50px -15px rgba(0, 0, 0, 0.8), 0 0 25px var(--violet-glow);
+}
+
+.tw-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  background: var(--surface-alt);
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+  position: relative;
+  z-index: 3;
+}
+
+.tw-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tw-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.tw-dot:hover {
+  transform: scale(1.2);
+}
+
+.tw-titletext {
+  margin-left: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tw-title-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--green);
+  background: var(--green-subtle);
+  border: 1px solid rgba(95, 217, 164, 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.tw-body {
+  padding: 24px 26px;
+  position: relative;
+  z-index: 3;
+}
+
+/* ==========================================================================
+   HERO SECTION & INTERACTIVE TERMINAL SANDBOX
+   ========================================================================== */
+.tw-hero {
+  padding: 70px 0 65px;
+}
+
+.tw-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--green);
+  background: var(--green-subtle);
+  border: 1px solid rgba(95, 217, 164, 0.28);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(6px);
+}
+
+.tw-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgba(95, 217, 164, 0.6);
+  animation: tw-pulse 2.2s infinite;
+}
+
+@keyframes tw-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(95, 217, 164, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(95, 217, 164, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(95, 217, 164, 0); }
+}
+
+.tw-hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.3rem, 5.8vw, 3.8rem);
+  font-weight: 700;
+  margin: 0 0 18px;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.tw-hero-role {
+  background: linear-gradient(135deg, #8b7ff0 0%, #38bdf8 50%, #5fd9a4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.tw-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1.15em;
+  background: var(--amber);
+  margin-left: 4px;
+  vertical-align: middle;
+  border-radius: 1px;
+  animation: tw-blink 1s steps(1) infinite;
+}
+
+@keyframes tw-blink {
+  50% { opacity: 0; }
+}
+
+/* Hero Terminal Sandbox */
+.tw-hero-window {
+  margin: 24px 0 28px;
+  background: #090d13;
+}
+
+.tw-terminal-content {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+}
+
+.tw-prompt-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.tw-prompt-line .tw-prompt-usr {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.tw-prompt-line .tw-prompt-dir {
+  color: var(--violet);
+}
+
+.tw-terminal-output {
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 14px;
+  min-height: 48px;
+}
+
+.tw-terminal-chips-label {
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tw-terminal-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tw-chip-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--amber);
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tw-chip-btn:hover {
+  background: var(--amber-subtle);
+  border-color: var(--amber);
+  transform: translateY(-1px);
+}
+
+.tw-chip-btn.active {
+  background: var(--amber);
+  color: #1a1206;
+  font-weight: 600;
+}
+
+.tw-hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.tw-btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--amber);
+  color: #1a1206;
+  padding: 13px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.tw-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px var(--amber-glow);
+}
+
+.tw-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 13px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tw-btn-ghost:hover {
+  border-color: var(--violet);
+  background: var(--surface-alt);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px var(--violet-glow);
+}
+
+/* ==========================================================================
+   ABOUT SECTION & STATS / HIGHLIGHT CARDS
+   ========================================================================== */
+.tw-about-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.tw-bio-card {
+  height: 100%;
+}
+
+.tw-about-paragraphs p {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.tw-about-paragraphs p:last-child {
+  margin-bottom: 0;
+}
+
+.tw-highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.tw-highlight-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tw-highlight-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--card-accent, var(--violet));
+  opacity: 0.8;
+  transition: width 0.2s ease;
+}
+
+.tw-highlight-card:hover {
+  transform: translateY(-3px) translateX(2px);
+  border-color: var(--card-accent, var(--violet));
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
+}
+
+.tw-highlight-card:hover::before {
+  width: 5px;
+}
+
+.tw-highlight-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.tw-highlight-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--card-accent, var(--violet));
+  border: 1px solid var(--border);
+}
+
+.tw-highlight-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.tw-highlight-desc {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin: 0;
+  padding-left: 42px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   STACK SECTION & FILTERING
+   ========================================================================== */
+.tw-stack-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tw-filter-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tw-filter-btn:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+.tw-filter-btn.active {
+  background: var(--violet);
+  color: #0d1117;
+  font-weight: 600;
+  border-color: var(--violet);
+}
+
+.tw-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.tw-stack-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+.tw-stack-card:hover {
+  transform: translateY(-4px);
+}
+
+.tw-stack-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tw-stack-dir {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tw-stack-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  background: var(--surface-alt);
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+.tw-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tw-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 5px 11px;
+  border-radius: 6px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tw-pill:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: var(--pill-color, var(--violet));
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   FEATURED PROJECTS SECTION & EDITION SWITCHER
+   ========================================================================== */
+.tw-projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.tw-project-card {
+  margin-bottom: 0;
+}
+
+.tw-project-header {
+  margin-bottom: 18px;
+}
+
+.tw-project-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.tw-project-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tw-project-tagline {
+  color: var(--amber);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.84rem;
+  margin: 0 0 12px;
+}
+
+.tw-project-desc {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Edition Switcher Tabs */
+.tw-edition-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 16px;
+  padding: 6px;
+  background: var(--surface-alt);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.tw-edition-tab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.tw-edition-tab:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tw-edition-tab.active {
+  background: var(--surface);
+  color: var(--green);
+  font-weight: 600;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Edition Detail Container */
+.tw-edition-detail {
+  background: rgba(14, 20, 29, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 18px 20px;
+  animation: tw-fade-in 0.3s ease;
+}
+
+@keyframes tw-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tw-edition-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tw-edition-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tw-edition-name {
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.tw-edition-stack-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  color: var(--cyan);
+  background: var(--cyan-subtle);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.tw-points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tw-point-item {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  line-height: 1.55;
+}
+
+.tw-point-bullet {
+  color: var(--green);
+  font-weight: bold;
+  margin-top: 1px;
+}
+
+/* Demo Credentials Box */
+.tw-demo-credentials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: rgba(20, 28, 40, 0.7);
+  border: 1px dashed rgba(240, 168, 78, 0.45);
+  padding: 8px 14px;
+  border-radius: 6px;
+  margin: 12px 0 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+}
+
+.tw-demo-cred-label {
+  color: var(--amber);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tw-demo-cred-code {
+  color: var(--text);
+  background: rgba(8, 12, 16, 0.6);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+.tw-project-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.tw-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #0b0f14;
+  background: var(--green);
+  padding: 7px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tw-open-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--green-glow);
+}
+
+.tw-desktop-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--text-dim);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.tw-spec-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tw-spec-toggle-btn:hover {
+  color: var(--violet);
+  border-color: var(--violet);
+  background: var(--violet-subtle);
+}
+
+/* Architecture Spec Drawer */
+.tw-spec-drawer {
+  margin-top: 14px;
+  background: #070a0e;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  animation: tw-slide-down 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tw-spec-title {
+  color: var(--violet);
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tw-spec-code {
+  color: #79c0ff;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* ==========================================================================
+   CONTACT SECTION (.env & CONNECT CARD)
+   ========================================================================== */
+.tw-contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+}
+
+.tw-env-card {
+  background: #090d13;
+}
+
+.tw-config-line-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tw-config-line-row:last-child {
+  border-bottom: none;
+}
+
+.tw-config-line-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tw-config-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  text-decoration: none;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tw-config-left .key {
+  color: var(--violet);
+}
+
+.tw-config-left .val {
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.tw-config-line-row:hover .val {
+  color: var(--amber);
+}
+
+.tw-copy-btn {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 5px 9px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s ease;
+}
+
+.tw-copy-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-subtle);
+}
+
+.tw-copy-btn.copied {
+  background: var(--green);
+  color: #0b0f14;
+  font-weight: 600;
+  border-color: var(--green);
+}
+
+.tw-connect-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.tw-connect-text {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tw-connect-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tw-connect-link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.tw-connect-link-card:hover {
+  border-color: var(--violet);
+  background: var(--surface-hover);
+  transform: translateX(4px);
+}
+
+.tw-connect-link-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+.tw-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0f151f;
+  border: 1px solid var(--green);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7), 0 0 20px var(--green-glow);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--text);
+  animation: tw-toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tw-toast-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.tw-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  text-align: center;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  background: rgba(8, 12, 16, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   SCROLL REVEALS & MOTION SYSTEM
+   ========================================================================== */
+.tw-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.tw-reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Queries */
+@media (max-width: 860px) {
+  .tw-about-grid,
+  .tw-contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .tw-shell { padding-inline: 20px; }
+  .tw-body { padding: 18px 20px; }
+  .tw-navlinks-desktop { display: none; }
+  .tw-menu-btn { display: block; }
+  .tw-hero { padding: 50px 0 45px; }
+  .tw-hero-actions { flex-direction: column; }
+  .tw-btn-primary, .tw-btn-ghost { width: 100%; justify-content: center; }
+  .tw-toast { left: 20px; right: 20px; bottom: 16px; }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .tw-reveal {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .tw-orb,
+  .tw-pulse,
+  .tw-cursor {
+    animation: none !important;
+  }
+  .tw-spotlight::before,
+  .tw-spotlight::after {
+    display: none !important;
+  }
+  .tw-highlight-card,
+  .tw-stack-card,
+  .tw-btn-primary,
+  .tw-btn-ghost,
+  .tw-open-btn {
+    transition: none !important;
+  }
+}
