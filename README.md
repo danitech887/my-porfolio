@@ -93,4 +93,3 @@ This repository is pre-configured for seamless, zero-config deployment on **[Ver
 - **GitHub**: [github.com/danitech887](https://github.com/danitech887)
 - **LinkedIn**: [linkedin.com/in/danielmaina](https://linkedin.com/in/danielmaina)
 - **Facebook**: [facebook.com/danitech96](https://www.facebook.com/danitech96)
-
