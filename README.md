@@ -11,6 +11,7 @@ A modern, responsive, cyber-terminal styled developer portfolio engineered with 
 - **Multi-Platform Project Showcases**:
   - **ShuleBase**: Educational ecosystem with interactive edition tabs (*Web Edition*, *JavaFX Desktop*, *PyQt5 Desktop*) and one-click demo credentials access.
   - **DataPilot**: AI-assisted workflow and data automation platform with direct portal launch.
+  - **Apex Logistics**: Enterprise logistics, telemetry fleet tracking, statutory payroll, double-entry financial ledger, and warehouse inventory ERP platform.
 - **Dynamic Architecture Spec Drawer**: Expandable system breakdowns for each project detailing tech stack tiers, data layers, and security architecture.
 - **Branded Ambient Theme**: Floating gradient mesh, cyber grid overlay, and faint logo watermarks in an obsidian dark aesthetic.
 - **Interactive `.env` Contact Card**: One-click clipboard copy for GitHub, LinkedIn, Facebook, Email, and Location with system toast alerts.

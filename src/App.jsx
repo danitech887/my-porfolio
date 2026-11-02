@@ -42,6 +42,7 @@ const PROFILE = {
   linkedin: "https://linkedin.com/in/danielmaina",
   facebook: "https://www.facebook.com/danitech96",
   location: "Kenya",
+  
 };
 
 const ABOUT = `I am a Computer Science student and software engineer driven by building practical, high-impact systems that solve real-world operational problems. My core focus lies in building secure, end-to-end applications across full-stack web, native desktop architectures, and system-level workflows.
@@ -133,7 +134,7 @@ const PROJECTS = [
     specs: `// System Architecture & Spec: ShuleBase
 Architecture: Multi-Tier Hybrid (Web + Standalone Desktop Clients)
 Core Modules : Role-Based Dashboards, CBC Rubric Evaluator, Fee Ledger, PDF Engine
-Data Layer   : Remote Neon PostgreSQL / Local SQLite with sync protocol
+Data Layer   : Remote Neon PostgreSQL / Local MySQL with sync protocol
 Security     : JWT-based stateless authentication & role permission guards`,
     editions: [
       {
@@ -204,6 +205,39 @@ Security : Local storage encryption & sanitized input ingestion`,
       },
     ],
   },
+  {
+    id: "apex",
+    file: "apex-logistics.project",
+    name: "Apex Logistics & Supply Chain",
+    tagline: "Enterprise Supply Chain, Fleet Telemetry & Multi-Tenant ERP",
+    description:
+      "An enterprise-grade logistics, telemetry fleet tracking, statutory payroll engine, double-entry financial general ledger, and warehouse inventory platform built as a modular monolith in Django REST with multi-schema PostgreSQL isolation and a responsive React SPA / Driver PWA.",
+    specs: `// System Architecture & Spec: Apex Logistics ERP
+Architecture: Modular Monolith (Django REST) + React 18 SPA & Driver PWA
+Core Domains : Fleet Ops & Telemetry, HR & Statutory Payroll, Double-Entry Ledger, Warehouse CRM
+Data Layer   : PostgreSQL 16 (Multi-Schema: auth_core, hr_payroll, finance, fleet_ops, warehouse_crm)
+Security     : Multi-Tenant RBAC, JWT Interceptor Middleware, Balanced Double-Entry Validation`,
+    editions: [
+      {
+        id: "web",
+        name: "Enterprise ERP Portal",
+        stack: "React 18 + Django 5 REST + PostgreSQL 16",
+        type: "web",
+        url: "https://apex-logistics-beryl.vercel.app/",
+        badge: "Live Enterprise Platform",
+        demoAccount: {
+          user: "admin@apexlogistics.co.ke",
+          pass: "password123",
+        },
+        points: [
+          "Modular departmental portals: Super Admin, HR & Payroll, Fleet Ops & Telemetry, Finance & Ledger, and Warehouse CRM",
+          "Kenyan statutory payroll engine with automated calculations for PAYE, SHA, NSSF, and Housing Levy with digital payslips",
+          "Real-time trip dispatch lifecycle, vehicle telemetry, fuel auditing, and Driver Self-Service PWA (ESS)",
+          "PostgreSQL multi-schema namespace isolation with strict RBAC and double-entry transaction balancing",
+        ],
+      },
+    ],
+  },
 ];
 
 const NAV = [
@@ -217,7 +251,7 @@ const TERMINAL_COMMANDS = {
   whoami: PROFILE.tagline,
   bio: "danitech (Daniel Maina) — Computer Science engineer focused on full-stack web platforms, native desktop systems (JavaFX/PyQt), and robust backend architectures.",
   skills: "Core Stack: Python, Django, DRF, React, Java, JavaFX, PyQt5, PostgreSQL, Linux, Docker, Git.",
-  projects: "Featured: ShuleBase (Web/JavaFX/PyQt), DataPilot (AI-Assisted Data Automation).",
+  projects: "Featured: ShuleBase (Web/JavaFX/PyQt), DataPilot (AI Data Automation), Apex Logistics (Enterprise Supply Chain ERP).",
   status: "Status: Online | Open to engineering opportunities & technical collaborations.",
   contact: `Email: ${PROFILE.email} | GitHub: ${PROFILE.github} | LinkedIn: ${PROFILE.linkedin} | Facebook: ${PROFILE.facebook}`,
 };
@@ -369,6 +403,7 @@ export default function App() {
   const [activeProjectEditions, setActiveProjectEditions] = useState({
     shulebase: "web",
     datapilot: "web",
+    apex: "web",
   });
   const [openSpecs, setOpenSpecs] = useState({});
 
