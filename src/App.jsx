@@ -238,6 +238,35 @@ Security     : Multi-Tenant RBAC, JWT Interceptor Middleware, Balanced Double-En
       },
     ],
   },
+  {
+    id: "nexis",
+    file: "nexis.project",
+    name: "NEXIS",
+    tagline: "Autonomous Software Fleet Observability & AST Remediation Engine",
+    description:
+      "A cyberpunk-inspired distributed telemetry console, AST-driven fault localization engine, and automated remediation runtime designed to pinpoint runtime exceptions to exact code lines and autonomously generate, test, and commit verified patches.",
+    specs: `// System Architecture & Spec: NEXIS
+Architecture: Next.js 15 App Router Frontend + FastAPI Asynchronous Backend
+AST Engine   : Tree-sitter AST syntax parsers for Python & TypeScript
+Remediation  : Local Ollama (qwen2.5-coder) / Cloud LLM with Pytest sandbox runner
+HUD & Audio  : Web Audio API synthesis engine with real-time computational sound effects`,
+    editions: [
+      {
+        id: "web",
+        name: "Observability HUD & Fleet Console",
+        stack: "Next.js 15 + FastAPI + Tree-sitter + Tailwind v4",
+        type: "web",
+        url: "https://nexis-taupe-kappa.vercel.app/",
+        badge: "Live Telemetry HUD",
+        points: [
+          "Live software fleet intelligence with automatic node discovery, continuous ingress health probing, and error tracing",
+          "AST-grounded fault localization using Tree-sitter syntax trees to eliminate AI hallucinations and isolate root-cause call expressions",
+          "Autonomous remediation bay with side-by-side git diff review and automated sandbox unit test verification",
+          "SAST vulnerability scanner with genuine atomic auto-bump pipeline resolving transitive lockfile dependencies",
+        ],
+      },
+    ],
+  },
 ];
 
 const NAV = [
@@ -251,7 +280,7 @@ const TERMINAL_COMMANDS = {
   whoami: PROFILE.tagline,
   bio: "danitech (Daniel Maina) — Computer Science engineer focused on full-stack web platforms, native desktop systems (JavaFX/PyQt), and robust backend architectures.",
   skills: "Core Stack: Python, Django, DRF, React, Java, JavaFX, PyQt5, PostgreSQL, Linux, Docker, Git.",
-  projects: "Featured: ShuleBase (Web/JavaFX/PyQt), DataPilot (AI Data Automation), Apex Logistics (Enterprise Supply Chain ERP).",
+  projects: "Featured: ShuleBase (Web/JavaFX/PyQt), DataPilot (AI Data Automation), Apex Logistics (Enterprise Supply Chain ERP), NEXIS (Autonomous Observability Engine).",
   status: "Status: Online | Open to engineering opportunities & technical collaborations.",
   contact: `Email: ${PROFILE.email} | GitHub: ${PROFILE.github} | LinkedIn: ${PROFILE.linkedin} | Facebook: ${PROFILE.facebook}`,
 };
@@ -404,6 +433,7 @@ export default function App() {
     shulebase: "web",
     datapilot: "web",
     apex: "web",
+    nexis: "web",
   });
   const [openSpecs, setOpenSpecs] = useState({});
 
