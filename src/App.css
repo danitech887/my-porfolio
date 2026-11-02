@@ -482,6 +482,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
 }
 
 .tw-dot {
@@ -490,6 +493,7 @@
   border-radius: 50%;
   display: inline-block;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .tw-dot:hover {
@@ -504,6 +508,10 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tw-title-badge {
@@ -1120,6 +1128,8 @@
   padding: 3px 8px;
   border-radius: 4px;
   border: 1px solid var(--border-subtle);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .tw-project-action-row {
@@ -1257,15 +1267,21 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
+  flex: 1;
 }
 
 .tw-config-left .key {
   color: var(--violet);
+  flex-shrink: 0;
 }
 
 .tw-config-left .val {
   color: var(--text-muted);
   transition: color 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tw-config-line-row:hover .val {
@@ -1285,6 +1301,7 @@
   gap: 4px;
   font-family: 'JetBrains Mono', monospace;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .tw-copy-btn:hover {
@@ -1412,15 +1429,246 @@
   }
 }
 
-@media (max-width: 760px) {
-  .tw-shell { padding-inline: 20px; }
-  .tw-body { padding: 18px 20px; }
+@media (max-width: 768px) {
+  .tw-shell { padding-inline: 18px; }
+  .tw-section { padding: 64px 0; }
+  .tw-sectionhead { margin-bottom: 28px; }
+  .tw-h2 { font-size: clamp(1.6rem, 5.5vw, 2.1rem); }
+  
+  .tw-nav { padding: 12px 18px; }
   .tw-navlinks-desktop { display: none; }
-  .tw-menu-btn { display: block; }
-  .tw-hero { padding: 50px 0 45px; }
-  .tw-hero-actions { flex-direction: column; }
-  .tw-btn-primary, .tw-btn-ghost { width: 100%; justify-content: center; }
-  .tw-toast { left: 20px; right: 20px; bottom: 16px; }
+  .tw-menu-btn { 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    min-width: 44px; 
+    min-height: 44px; 
+  }
+  .tw-mobile-menu { 
+    padding: 14px 18px 20px; 
+    gap: 8px; 
+  }
+  .tw-mobile-menu button { 
+    min-height: 44px; 
+    font-size: 0.9rem; 
+    padding: 12px 14px; 
+  }
+
+  .tw-hero { padding: 44px 0 36px; }
+  .tw-hero-actions { 
+    flex-direction: column; 
+    width: 100%; 
+    gap: 12px; 
+    margin-top: 20px; 
+  }
+  .tw-btn-primary, .tw-btn-ghost { 
+    width: 100%; 
+    justify-content: center; 
+    min-height: 44px; 
+    padding: 12px 18px; 
+  }
+  .tw-prompt-line { 
+    flex-wrap: wrap; 
+    gap: 6px; 
+  }
+  .tw-terminal-content { font-size: 0.82rem; }
+  .tw-terminal-output { 
+    font-size: 0.82rem; 
+    min-height: auto; 
+    word-break: break-word; 
+    overflow-wrap: anywhere; 
+  }
+  .tw-chip-btn { 
+    min-height: 32px; 
+    padding: 5px 10px; 
+    font-size: 0.74rem; 
+  }
+
+  .tw-titlebar { 
+    padding: 10px 14px; 
+  }
+  .tw-titletext { 
+    max-width: 200px; 
+    font-size: 0.74rem; 
+  }
+  .tw-title-badge { 
+    font-size: 0.65rem; 
+    padding: 2px 6px; 
+  }
+  .tw-body { padding: 18px 16px; }
+
+  .tw-stack-grid { 
+    grid-template-columns: 1fr; 
+    gap: 14px; 
+  }
+  .tw-stack-card { padding: 16px 16px; }
+  .tw-filter-btn { 
+    padding: 6px 12px; 
+    font-size: 0.74rem; 
+    min-height: 34px; 
+  }
+  .tw-stack-filter-row { 
+    gap: 6px; 
+    margin-bottom: 18px; 
+  }
+  .tw-pill { 
+    padding: 4px 9px; 
+    font-size: 0.72rem; 
+  }
+
+  .tw-project-title { 
+    font-size: clamp(1.1rem, 4vw, 1.35rem); 
+    flex-wrap: wrap; 
+    word-break: break-word; 
+  }
+  .tw-project-tagline { 
+    font-size: 0.82rem; 
+    word-break: break-word; 
+  }
+  .tw-project-desc { font-size: 0.88rem; }
+  .tw-edition-tabs { 
+    gap: 6px; 
+    padding: 4px; 
+  }
+  .tw-edition-tab { 
+    padding: 7px 11px; 
+    font-size: 0.74rem; 
+    min-height: 34px; 
+  }
+  .tw-edition-detail { padding: 14px 12px; }
+  .tw-edition-meta-row { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 8px; 
+    margin-bottom: 12px; 
+    padding-bottom: 10px; 
+  }
+  .tw-edition-name { 
+    font-size: 0.92rem; 
+    flex-wrap: wrap; 
+  }
+  .tw-edition-stack-badge { 
+    font-size: 0.7rem; 
+    padding: 3px 7px; 
+  }
+  .tw-points-list { 
+    margin-bottom: 14px; 
+    gap: 8px; 
+  }
+  .tw-point-item { 
+    font-size: 0.84rem; 
+    gap: 8px; 
+  }
+  .tw-demo-credentials { 
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 8px; 
+    padding: 10px 12px; 
+  }
+  .tw-demo-cred-code { 
+    word-break: break-all; 
+    overflow-wrap: anywhere; 
+    width: 100%; 
+    display: block; 
+    font-size: 0.74rem; 
+    padding: 5px 8px; 
+  }
+  .tw-demo-credentials .tw-copy-btn { 
+    width: 100%; 
+    justify-content: center; 
+    min-height: 34px; 
+  }
+  .tw-project-action-row { 
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 8px; 
+  }
+  .tw-open-btn, 
+  .tw-spec-toggle-btn, 
+  .tw-desktop-badge { 
+    width: 100%; 
+    justify-content: center; 
+    text-align: center; 
+    min-height: 38px; 
+    box-sizing: border-box; 
+    font-size: 0.78rem; 
+  }
+  .tw-spec-drawer { padding: 10px 12px; }
+  .tw-spec-code { 
+    font-size: 0.72rem; 
+    white-space: pre-wrap; 
+    word-break: break-word; 
+    overflow-wrap: anywhere; 
+  }
+
+  .tw-config-line-row { 
+    padding: 10px 12px; 
+  }
+  .tw-config-left { font-size: 0.8rem; }
+  .tw-copy-btn { min-height: 32px; }
+  .tw-connect-actions a { min-height: 44px; }
+
+  .tw-toast { 
+    left: 16px; 
+    right: 16px; 
+    bottom: 16px; 
+    transform: none; 
+    width: auto; 
+    max-width: calc(100vw - 32px); 
+    justify-content: center; 
+    font-size: 0.82rem; 
+  }
+
+  .tw-logo-watermark-hero { 
+    width: 320px; 
+    height: 320px; 
+    top: 10px; 
+    right: -40px; 
+    opacity: 0.035; 
+  }
+  .tw-logo-watermark-bottom { 
+    width: 280px; 
+    height: 280px; 
+    left: -50px; 
+    bottom: 5%; 
+    opacity: 0.025; 
+  }
+}
+
+@media (max-width: 480px) {
+  .tw-shell { padding-inline: 14px; }
+  .tw-nav { padding: 10px 14px; }
+  .tw-body { padding: 14px 12px; }
+  .tw-section { padding: 48px 0; }
+  .tw-h2 { font-size: 1.55rem; }
+  .tw-highlight-desc { 
+    padding-left: 0; 
+    margin-top: 6px; 
+  }
+  .tw-config-line-row { 
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 8px; 
+    padding: 10px 8px; 
+  }
+  .tw-config-line-row .tw-copy-btn { 
+    width: 100%; 
+    justify-content: center; 
+    min-height: 32px; 
+  }
+  .tw-titletext { max-width: 140px; }
+  .tw-logo { 
+    font-size: 0.88rem; 
+    padding: 4px 8px 4px 5px; 
+  }
+  .tw-logo-icon { 
+    width: 22px; 
+    height: 22px; 
+  }
+  .tw-footer { 
+    font-size: 0.76rem; 
+    padding: 24px 14px; 
+  }
 }
 
 /* Reduced Motion Override */

@@ -422,6 +422,7 @@ export default function App() {
 
   // Handle CV Download
   const handleDownloadCV = () => {
+    setMenuOpen(false);
     const a = document.createElement("a");
     a.href = "/Daniel_Maina_CV.pdf";
     a.download = "Daniel_Maina_CV.pdf";
