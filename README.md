@@ -86,6 +86,7 @@ docker compose up -d --build
 
 ## ✨ Portfolio Application Features
 
+- **Floating WhatsApp Quick Reply Bot**: Interactive assistant offering guided inquiry options (*Software Projects*, *ShuleBase/Nexis*, *Technical Consultation*, *CV Requests*) before routing directly to live WhatsApp chat (`+254 757 378 376`).
 - **Interactive Spotlight Cards**: Cursor-tracking radial glow (`--mouse-x`, `--mouse-y`) that dynamically illuminates card borders and surfaces.
 - **Hero CLI Sandbox**: Interactive simulated terminal where visitors can execute commands (`whoami`, `bio`, `skills`, `projects`, `specs`, `quickstart`, `status`, `contact`).
 - **Multi-Platform Project Showcases**:
@@ -161,6 +162,7 @@ This repository is pre-configured for seamless, zero-config deployment on **[Ver
 ## 📬 Connect & Collaborate
 
 - **Portfolio**: [danitech](https://github.com/danitech887)
+- **WhatsApp**: [+254 757 378 376 (Quick Chat & Floating Bot)](https://wa.me/254757378376)
 - **Email**: [danitechsoftwaresdev@gmail.com](mailto:danitechsoftwaresdev@gmail.com)
 - **GitHub**: [github.com/danitech887](https://github.com/danitech887)
 - **LinkedIn**: [linkedin.com/in/danielmaina](https://linkedin.com/in/danielmaina)

@@ -26,6 +26,7 @@ import {
   FileText,
   Mail,
   CheckCircle2,
+  Send,
 } from "lucide-react";
 
 // ---------------------------------------------------------------------------
@@ -41,6 +42,9 @@ const PROFILE = {
   github: "https://github.com/danitech887",
   linkedin: "https://linkedin.com/in/danielmaina",
   facebook: "https://www.facebook.com/danitech96",
+  whatsapp: "254757378376",
+  whatsappFormatted: "+254 757 378 376",
+  whatsappUrl: "https://wa.me/254757378376",
   location: "Kenya",
 };
 
@@ -344,8 +348,10 @@ const TERMINAL_COMMANDS = {
     "System Specs: Python 3.11+ | Django | FastAPI | Next.js | React | PostgreSQL | SQLite | Redis | Docker | Linux | Nginx",
   quickstart:
     "git clone https://github.com/danitech887/<repo-name>.git && cd <repo-name> # Setup: python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt # Docker: docker compose up -d --build",
+  whatsapp:
+    `WhatsApp Direct: ${PROFILE.whatsappFormatted} (${PROFILE.whatsappUrl}) — Chat with the floating WhatsApp quick-reply bot or click the link!`,
   status: "Status: Online | Open to engineering opportunities & technical collaborations.",
-  contact: `Email: ${PROFILE.email} | GitHub: ${PROFILE.github} | LinkedIn: ${PROFILE.linkedin} | Facebook: ${PROFILE.facebook}`,
+  contact: `Email: ${PROFILE.email} | WhatsApp: ${PROFILE.whatsappFormatted} | GitHub: ${PROFILE.github} | LinkedIn: ${PROFILE.linkedin} | Facebook: ${PROFILE.facebook}`,
 };
 
 function FacebookIcon({ size = 16, color = "currentColor" }) {
@@ -361,6 +367,19 @@ function FacebookIcon({ size = 16, color = "currentColor" }) {
       strokeLinejoin="round"
     >
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
+function WhatsAppIcon({ size = 18, color = "currentColor" }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill={color}
+    >
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.888 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.743.95 3.707 1.452 5.71 1.454h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 00-3.48-8.413z" />
     </svg>
   );
 }
@@ -474,6 +493,280 @@ function SectionHeading({ index, label, title }) {
       </div>
       <h2 className="tw-h2">{title}</h2>
       <span className="tw-dir-label">{label}</span>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// FLOATING WHATSAPP BOT COMPONENT
+// ---------------------------------------------------------------------------
+
+const BOT_QUICK_REPLIES = [
+  {
+    id: "hire",
+    label: "💼 Hire / Software Project",
+    prompt: "Hi Daniel! I came across your portfolio and would like to discuss a software project or hiring opportunity.",
+  },
+  {
+    id: "systems",
+    label: "🚀 ShuleBase / Nexis Engine",
+    prompt: "Hi Daniel! I'm interested in discussing ShuleBase / Nexis Engine and learning more about your architecture.",
+  },
+  {
+    id: "consult",
+    label: "⚡ Technical Consultation",
+    prompt: "Hi Daniel! I would like to schedule a technical consultation regarding full-stack backends and system architecture.",
+  },
+  {
+    id: "cv",
+    label: "📄 Request CV & Experience",
+    prompt: "Hi Daniel! Reaching out from your portfolio. I'd like to review your CV and experience for potential opportunities.",
+  },
+  {
+    id: "say-hi",
+    label: "💬 General Inquiry / Say Hi",
+    prompt: "Hi Daniel! Just exploring your developer portfolio and wanted to connect on WhatsApp.",
+  },
+];
+
+function WhatsAppBotWidget() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showTeaser, setShowTeaser] = useState(true);
+  const [hasChosen, setHasChosen] = useState(false);
+  const [inputVal, setInputVal] = useState("");
+  const chatBodyRef = useRef(null);
+  const messageCounter = useRef(1);
+
+  const [messages, setMessages] = useState([
+    {
+      id: "intro-1",
+      sender: "bot",
+      text: "👋 Hi there! I'm Daniel's automated quick assistant. Select an option below or type a message to start our WhatsApp conversation directly:",
+      time: "Just now",
+    },
+  ]);
+
+  // Auto-scroll to bottom of chat body when messages update
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [messages, isOpen, hasChosen]);
+
+  // Handle selecting a quick reply option
+  const handleSelectReply = (option) => {
+    const userMsg = {
+      id: `msg-user-${messageCounter.current++}`,
+      sender: "user",
+      text: option.prompt,
+      time: "Just now",
+    };
+
+    const targetUrl = `https://wa.me/${PROFILE.whatsapp}?text=${encodeURIComponent(option.prompt)}`;
+
+    const botReply = {
+      id: `msg-bot-${messageCounter.current++}`,
+      sender: "bot",
+      text: `Routing you to Daniel on WhatsApp (${PROFILE.whatsappFormatted})...`,
+      actionUrl: targetUrl,
+      actionText: "Launch WhatsApp Chat",
+      time: "Just now",
+    };
+
+    setMessages((prev) => [...prev, userMsg, botReply]);
+    setHasChosen(true);
+
+    // Open WhatsApp in new tab
+    setTimeout(() => {
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
+    }, 600);
+  };
+
+  // Handle custom typed message
+  const handleSendCustom = (e) => {
+    if (e) e.preventDefault();
+    const text = inputVal.trim();
+    if (!text) return;
+
+    const userMsg = {
+      id: `msg-user-${messageCounter.current++}`,
+      sender: "user",
+      text,
+      time: "Just now",
+    };
+
+    const targetUrl = `https://wa.me/${PROFILE.whatsapp}?text=${encodeURIComponent(text)}`;
+
+    const botReply = {
+      id: `msg-bot-${messageCounter.current++}`,
+      sender: "bot",
+      text: `Got it! Connecting you with Daniel on WhatsApp (${PROFILE.whatsappFormatted})...`,
+      actionUrl: targetUrl,
+      actionText: "Launch WhatsApp Chat",
+      time: "Just now",
+    };
+
+    setMessages((prev) => [...prev, userMsg, botReply]);
+    setInputVal("");
+    setHasChosen(true);
+
+    setTimeout(() => {
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
+    }, 600);
+  };
+
+  // Reset conversation to initial options
+  const handleReset = () => {
+    setMessages([
+      {
+        id: "intro-1",
+        sender: "bot",
+        text: "👋 Pick another option below or type a message to chat directly with Daniel on WhatsApp:",
+        time: "Just now",
+      },
+    ]);
+    setHasChosen(false);
+    setInputVal("");
+  };
+
+  return (
+    <div className="tw-wa-widget-container" aria-label="WhatsApp Quick Reply Bot">
+      {/* Teaser pill when closed */}
+      {!isOpen && showTeaser && (
+        <div
+          className="tw-wa-pill-teaser"
+          onClick={() => {
+            setIsOpen(true);
+            setShowTeaser(false);
+          }}
+          title="Click to open WhatsApp Bot"
+        >
+          <span className="tw-wa-online-dot" style={{ position: "static", width: 8, height: 8 }} />
+          <span className="tw-wa-pill-text">Quick WhatsApp Bot</span>
+          <span className="tw-wa-pill-badge">Online</span>
+        </div>
+      )}
+
+      {/* Chat Window */}
+      {isOpen && (
+        <div className="tw-wa-chat-window">
+          {/* Header */}
+          <div className="tw-wa-chat-header">
+            <div className="tw-wa-header-left">
+              <div className="tw-wa-avatar">
+                <img src="/logo.jpeg" alt="Daniel Maina" className="tw-wa-avatar-img" />
+              </div>
+              <div className="tw-wa-header-info">
+                <span className="tw-wa-header-title">Daniel Maina (danitech)</span>
+                <span className="tw-wa-header-sub">
+                  <span className="tw-wa-sub-pulse" />
+                  Bot Online · Quick Routing
+                </span>
+              </div>
+            </div>
+            <button
+              className="tw-wa-close-btn"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close Chat Window"
+            >
+              <X size={16} />
+            </button>
+          </div>
+
+          {/* Messages Body */}
+          <div className="tw-wa-chat-body" ref={chatBodyRef}>
+            {messages.map((msg) => (
+              <div key={msg.id} className={`tw-wa-msg-row ${msg.sender}`}>
+                <div className={`tw-wa-bubble ${msg.sender}`}>
+                  <p style={{ margin: 0 }}>{msg.text}</p>
+                  {msg.actionUrl && (
+                    <a
+                      className="tw-wa-action-launch-btn"
+                      href={msg.actionUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <WhatsAppIcon size={16} color="#080c10" />
+                      {msg.actionText}
+                    </a>
+                  )}
+                </div>
+                <span className="tw-wa-time">{msg.time}</span>
+              </div>
+            ))}
+
+            {/* Quick Replies Options */}
+            {!hasChosen && (
+              <div style={{ marginTop: 4 }}>
+                <div className="tw-wa-quick-replies-label">Suggested Quick Replies:</div>
+                <div className="tw-wa-quick-chips">
+                  {BOT_QUICK_REPLIES.map((option) => (
+                    <button
+                      key={option.id}
+                      className="tw-wa-chip"
+                      onClick={() => handleSelectReply(option)}
+                    >
+                      <span>{option.label}</span>
+                      <ChevronRight size={14} className="tw-wa-chip-arrow" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Reset button if user already picked a choice */}
+            {hasChosen && (
+              <button className="tw-wa-reset-btn" onClick={handleReset}>
+                ↺ Select another topic
+              </button>
+            )}
+          </div>
+
+          {/* Footer Input */}
+          <div className="tw-wa-chat-footer">
+            <form className="tw-wa-input-row" onSubmit={handleSendCustom}>
+              <input
+                type="text"
+                className="tw-wa-input"
+                placeholder="Type your message..."
+                value={inputVal}
+                onChange={(e) => setInputVal(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="tw-wa-send-btn"
+                disabled={!inputVal.trim()}
+                title="Send to WhatsApp"
+                aria-label="Send"
+              >
+                <Send size={15} />
+              </button>
+            </form>
+            <a
+              className="tw-wa-direct-link"
+              href={PROFILE.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <WhatsAppIcon size={12} color="#25D366" /> Direct WhatsApp: {PROFILE.whatsappFormatted}
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Floating Trigger Button */}
+      <button
+        className="tw-wa-trigger-btn"
+        onClick={() => {
+          setIsOpen((prev) => !prev);
+          setShowTeaser(false);
+        }}
+        aria-label="Toggle WhatsApp Quick Reply Bot"
+        title="Chat with WhatsApp Bot"
+      >
+        {isOpen ? <X size={24} /> : <WhatsAppIcon size={28} color="#ffffff" />}
+        <span className="tw-wa-online-dot" />
+      </button>
     </div>
   );
 }
@@ -601,6 +894,9 @@ export default function App() {
           <span>{toastMessage}</span>
         </div>
       )}
+
+      {/* FLOATING WHATSAPP BOT */}
+      <WhatsAppBotWidget />
 
       {/* NAVIGATION BAR */}
       <nav className="tw-nav" aria-label="Main Navigation">
@@ -1058,6 +1354,27 @@ export default function App() {
               </div>
 
               <div className="tw-config-line-row">
+                <a
+                  className="tw-config-left"
+                  href={PROFILE.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <WhatsAppIcon size={16} color="#25D366" />
+                  <span className="key">WHATSAPP=</span>
+                  <span className="val">{PROFILE.whatsappFormatted}</span>
+                </a>
+                <button
+                  className={`tw-copy-btn ${copiedKey === "WhatsApp" ? "copied" : ""}`}
+                  onClick={() => handleCopy(PROFILE.whatsapp, "WhatsApp")}
+                  title="Copy WhatsApp Number"
+                >
+                  {copiedKey === "WhatsApp" ? <Check size={12} /> : <Copy size={12} />}
+                  {copiedKey === "WhatsApp" ? "Copied" : "Copy"}
+                </button>
+              </div>
+
+              <div className="tw-config-line-row">
                 <a className="tw-config-left" href={`mailto:${PROFILE.email}`}>
                   <Mail size={16} color="var(--violet)" />
                   <span className="key">EMAIL=</span>
@@ -1133,6 +1450,19 @@ export default function App() {
                   style={{ textDecoration: "none", justifyContent: "center" }}
                 >
                   <Mail size={16} /> Send Direct Email
+                </a>
+
+                <a
+                  className="tw-connect-link-card"
+                  href={PROFILE.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="tw-connect-link-left">
+                    <WhatsAppIcon size={16} color="#25D366" />
+                    <span>Quick Chat on WhatsApp ({PROFILE.whatsappFormatted})</span>
+                  </div>
+                  <ArrowUpRight size={16} color="var(--text-dim)" />
                 </a>
 
                 <a
