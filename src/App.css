@@ -1143,6 +1143,36 @@
   border-top: 1px solid var(--border-subtle);
 }
 
+.tw-project-action-links {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tw-source-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tw-source-btn:hover {
+  border-color: var(--violet);
+  color: var(--violet);
+  background: var(--violet-subtle);
+  transform: translateY(-2px);
+}
+
 .tw-open-btn {
   display: inline-flex;
   align-items: center;

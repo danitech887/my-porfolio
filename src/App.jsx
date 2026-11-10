@@ -29,129 +29,182 @@ import {
 } from "lucide-react";
 
 // ---------------------------------------------------------------------------
-// DATA — edit these to update the site and replace profile URLs with real links.
+// DATA — Core Technologies, Specifications, and Projects
 // ---------------------------------------------------------------------------
 
 const PROFILE = {
   name: "Daniel Maina",
   role: "Full-Stack & Systems Developer",
   tagline:
-    "Building robust web platforms, native desktop systems, and intelligent digital workflows.",
+    "Building robust web platforms, telemetry systems, native desktop architectures, and automated CLI workflows.",
   email: "danitechsoftwaresdev@gmail.com",
   github: "https://github.com/danitech887",
   linkedin: "https://linkedin.com/in/danielmaina",
   facebook: "https://www.facebook.com/danitech96",
   location: "Kenya",
-  
 };
 
-const ABOUT = `I am a Computer Science student and software engineer driven by building practical, high-impact systems that solve real-world operational problems. My core focus lies in building secure, end-to-end applications across full-stack web, native desktop architectures, and system-level workflows.
+const ABOUT = `I am a Computer Science student and software engineer driven by building practical, high-impact systems that solve real-world operational problems. My core focus lies in building secure, end-to-end applications across full-stack web, distributed telemetry engines, native desktop architectures, and automated CLI workflows.
 
-Whether architecting comprehensive management portals, developing clean desktop GUI applications from scratch, or configuring containerized backend infrastructure on Linux, I prioritize clean architecture, performant code, and intuitive user experiences.`;
+Whether architecting comprehensive school management ecosystems, developing asynchronous telemetry and fault localization engines, or configuring containerized backend infrastructure on Linux with Docker and Nginx, I prioritize clean architecture, performant code, and intuitive user experiences.`;
 
 const HIGHLIGHTS = [
   {
     icon: Layers,
     title: "Multi-Platform Systems",
-    desc: "Seamless engineering across Full-Stack Web (React/Django), JavaFX (Pure Java), and PyQt5 desktop environments.",
+    desc: "Seamless engineering across Full-Stack Web (FastAPI, Next.js, Django, React), JavaFX (Pure Java), and PyQt5 desktop environments.",
     accent: "var(--violet)",
+  },
+  {
+    icon: Cpu,
+    title: "Observability & Benchmarking",
+    desc: "Real-time telemetry collection, AST-grounded fault localization, and lightweight CLI concurrency stress-testing with Docker.",
+    accent: "var(--green)",
   },
   {
     icon: Code,
     title: "Kenyan CBC Domain Architecture",
-    desc: "Deep experience designing school ecosystems aligned with Kenyan Competency-Based Curriculum rubric grading.",
-    accent: "var(--green)",
+    desc: "Deep experience designing modular school ecosystems with RBAC, Kenyan CBC rubric grading, and automated fee reconciliation.",
+    accent: "var(--amber)",
   },
   {
     icon: Server,
     title: "Linux & DevOps Workflows",
-    desc: "Hands-on containerized deployments with Docker, Linux system management (Ubuntu/Kali), and scalable REST APIs.",
-    accent: "var(--amber)",
-  },
-  {
-    icon: Cpu,
-    title: "Performance & Clean Code",
-    desc: "Zero-dependency desktop GUI engineering, normalized relational schemas, and responsive UI/UX architecture.",
+    desc: "Containerized deployments with Docker, Linux system management (Ubuntu/Debian), Nginx reverse proxying, and GitHub Actions CI/CD.",
     accent: "var(--cyan)",
   },
 ];
 
 const STACK = [
   {
-    category: "backend",
-    dir: "backend/",
-    label: "Backend & Databases",
-    accent: "var(--amber)",
+    category: "languages",
+    dir: "languages/",
+    label: "Languages",
+    accent: "var(--violet)",
     items: [
-      "Python",
-      "Django",
-      "Django REST Framework",
-      "Java",
-      "RESTful Architecture",
-      "Neon PostgreSQL",
-      "MySQL",
-      "SQLite",
+      "Python 3.11+",
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "SQL",
+      "Bash",
     ],
   },
   {
-    category: "frontend",
-    dir: "frontend/",
-    label: "Frontend & UI",
-    accent: "var(--violet)",
-    items: ["React", "JavaScript (ES6+)", "HTML5", "CSS3", "Modern UI/UX Patterns", "Responsive Design"],
+    category: "frameworks",
+    dir: "frameworks/",
+    label: "Frameworks & Libraries",
+    accent: "var(--green)",
+    items: [
+      "Django",
+      "FastAPI",
+      "Next.js",
+      "React",
+      "Django REST Framework",
+    ],
+  },
+  {
+    category: "datastores",
+    dir: "datastores/",
+    label: "Data Stores",
+    accent: "var(--amber)",
+    items: [
+      "PostgreSQL",
+      "SQLite",
+      "Redis",
+      "MySQL",
+    ],
+  },
+  {
+    category: "infrastructure",
+    dir: "infrastructure/",
+    label: "Infrastructure & DevOps",
+    accent: "var(--cyan)",
+    items: [
+      "Docker",
+      "Linux (Ubuntu/Debian)",
+      "Git",
+      "GitHub Actions",
+      "Nginx",
+      "Vercel",
+    ],
   },
   {
     category: "desktop",
     dir: "desktop/",
-    label: "Desktop Architectures",
-    accent: "var(--green)",
-    items: ["JavaFX (Pure Java)", "PyQt5 / PySide", "Native System APIs", "Desktop GUI Architecture"],
-  },
-  {
-    category: "devops",
-    dir: "devops/",
-    label: "DevOps & Infrastructure",
-    accent: "var(--cyan)",
-    items: ["Linux (Ubuntu/Kali)", "Docker", "Git", "GitHub", "Render", "Vercel", "Netlify"],
-  },
-  {
-    category: "exploration",
-    dir: "exploration/",
-    label: "Emerging & Tools",
+    label: "Desktop & Tooling",
     accent: "#f472b6",
-    items: ["Kotlin (Jetpack Compose)", "Bash Scripting", "API Integrations", "Workflow Automation"],
+    items: [
+      "JavaFX (Pure Java)",
+      "PyQt5 / PySide",
+      "Native System APIs",
+      "Web Audio API",
+      "RESTful Architecture",
+    ],
   },
 ];
 
 const PROJECTS = [
   {
+    id: "nexis",
+    file: "nexis-engine.project",
+    name: "Nexis Engine",
+    tagline: "Real-Time Observability & Synthetic User Simulation Engine",
+    description:
+      "Real-time observability, telemetry collection, and automated synthetic user simulation.",
+    specs: `// System Architecture & Spec: Nexis Engine
+Primary Stack: FastAPI, Next.js, SQLite
+Architecture : Distributed Telemetry Ingestion -> AST Fault Localization -> Autonomous Remediation
+Data Layer   : SQLite local operational store & low-latency telemetry buffers
+Engine Scope : Real-time observability, telemetry collection, and automated synthetic user simulation
+Verification : Pytest sandbox isolation with automated test assertions`,
+    editions: [
+      {
+        id: "web",
+        name: "Observability HUD & Fleet Console",
+        stack: "FastAPI + Next.js + SQLite",
+        type: "web",
+        url: "https://nexis-taupe-kappa.vercel.app/",
+        githubUrl: "https://github.com/danitech887",
+        badge: "Featured System",
+        points: [
+          "Real-time observability, telemetry collection, and automated synthetic user simulation",
+          "Tree-sitter AST syntax parsing for root-cause fault localization across distributed services",
+          "Decoupled asynchronous FastAPI backend paired with a high-performance Next.js telemetry console",
+          "Autonomous remediation runtime with side-by-side git diff review and sandbox verification",
+        ],
+      },
+    ],
+  },
+  {
     id: "shulebase",
     file: "shulebase.project",
     name: "ShuleBase",
-    tagline: "Multi-Platform School Management Ecosystem",
+    tagline: "Modular School Management Platform & CBC Ecosystem",
     description:
-      "A comprehensive educational management platform engineered around the Kenyan Competency-Based Curriculum (CBC) framework, built across three distinct architecture paradigms for varied deployment scenarios.",
+      "Modular school management platform with role-based access control, CBC grading, and automated fee reconciliation.",
     specs: `// System Architecture & Spec: ShuleBase
-Architecture: Multi-Tier Hybrid (Web + Standalone Desktop Clients)
-Core Modules : Role-Based Dashboards, CBC Rubric Evaluator, Fee Ledger, PDF Engine
-Data Layer   : Remote Neon PostgreSQL / Local MySQL with sync protocol
-Security     : JWT-based stateless authentication & role permission guards`,
+Primary Stack: Django, PostgreSQL, React
+Architecture : Modular Multi-Tier (Django REST Monolith + React SPA + Desktop Clients)
+Core Modules : Role-Based Access Control (RBAC), CBC Rubric Grading, Automated Fee Reconciliation
+Data Layer   : PostgreSQL with normalized schemas & transaction isolation
+Security     : JWT-based stateless authentication & granular role permissions`,
     editions: [
       {
         id: "web",
         name: "Web Edition",
-        stack: "React + Django REST Framework",
+        stack: "Django + PostgreSQL + React",
         type: "web",
         url: "https://shulebase.vercel.app/",
+        githubUrl: "https://github.com/danitech887",
         badge: "Live Web Portal",
         demoAccount: {
           user: "danitech",
           pass: "danitech",
         },
         points: [
-          "Responsive role-based dashboards for Administrators, Teachers, Students, and Parents",
-          "Real-time fee tracking, automated CBC rubric grading, attendance monitoring, dynamic reporting",
-          "Deployed with scalable cloud hosting and decoupled REST API endpoints",
+          "Modular school management platform with granular role-based access control (Admin, Teacher, Student, Parent)",
+          "Kenyan Competency-Based Curriculum (CBC) rubric grading and automated term assessments",
+          "Automated fee reconciliation, digital invoice generation, and student financial ledgers",
         ],
       },
       {
@@ -159,6 +212,7 @@ Security     : JWT-based stateless authentication & role permission guards`,
         name: "JavaFX Desktop Edition",
         stack: "Pure Java",
         type: "desktop",
+        githubUrl: "https://github.com/danitech887",
         badge: "Offline-First Native GUI",
         points: [
           "Offline-capable, standalone desktop client without FXML dependencies for maximum performance and explicit UI control",
@@ -170,6 +224,7 @@ Security     : JWT-based stateless authentication & role permission guards`,
         name: "PyQt5 Desktop Edition",
         stack: "Python + PyQt5",
         type: "desktop",
+        githubUrl: "https://github.com/danitech887",
         badge: "Lightweight Desktop Client",
         points: [
           "Rapid, robust desktop variant with rich data tables and asynchronous background tasks",
@@ -179,28 +234,30 @@ Security     : JWT-based stateless authentication & role permission guards`,
     ],
   },
   {
-    id: "datapilot",
-    file: "datapilot.project",
-    name: "DataPilot",
-    tagline: "AI-Assisted Data Entry & Workflow Automation Assistant",
+    id: "apiloadsim",
+    file: "api-load-simulator.project",
+    name: "API Load Simulator",
+    tagline: "Lightweight CLI REST Benchmarking & Concurrency Stress-Tester",
     description:
-      "A hybrid productivity web application combining a React frontend with a Django backend, designed for intelligent data extraction, cleaning, and structured data entry pipelines.",
-    specs: `// System Architecture & Spec: DataPilot
-Pipeline : Async file parsing -> validation regex/AI extractor -> structured export
-Tech     : React, Django REST, Pandas/Python worker queue
-Security : Local storage encryption & sanitized input ingestion`,
+      "Lightweight CLI stress-tester for benchmarking REST endpoints and measuring latency under concurrency.",
+    specs: `// System Architecture & Spec: API Load Simulator
+Primary Stack: Python, Docker, Bash
+Runtime      : Python 3.11+ Asynchronous Engine (asyncio / aiohttp)
+Distribution : Docker Containerized & Standalone Bash CLI
+Capabilities : Concurrency stress-testing, latency quantiles (p50, p95, p99), error rates, RPS throughput
+Architecture : Non-blocking event loop workers with zero-overhead execution`,
     editions: [
       {
-        id: "web",
-        name: "Web Application",
-        stack: "React + Django + Automation Workers",
-        type: "web",
-        url: "https://data-pilot-two.vercel.app/",
-        badge: "Live Web App",
+        id: "cli",
+        name: "CLI & Docker Runner",
+        stack: "Python + Docker + Bash",
+        type: "cli",
+        githubUrl: "https://github.com/danitech887",
+        badge: "CLI Stress-Tester",
         points: [
-          "Automated document ingestion and tabular data normalisation pipeline",
-          "Validation interface with instant mismatch and error highlighting",
-          "One-click batch export to standard CSV, Excel, and database tables",
+          "Lightweight CLI stress-tester for benchmarking REST endpoints and measuring latency under concurrency",
+          "Precise latency percentile distributions (p50, p95, p99), throughput calculations, and error categorization",
+          "Containerized Docker execution with one-command spin-up and minimal environment footprint",
         ],
       },
     ],
@@ -224,6 +281,7 @@ Security     : Multi-Tenant RBAC, JWT Interceptor Middleware, Balanced Double-En
         stack: "React 18 + Django 5 REST + PostgreSQL 16",
         type: "web",
         url: "https://apex-logistics-beryl.vercel.app/",
+        githubUrl: "https://github.com/danitech887",
         badge: "Live Enterprise Platform",
         demoAccount: {
           user: "admin@apexlogistics.co.ke",
@@ -239,30 +297,29 @@ Security     : Multi-Tenant RBAC, JWT Interceptor Middleware, Balanced Double-En
     ],
   },
   {
-    id: "nexis",
-    file: "nexis.project",
-    name: "NEXIS",
-    tagline: "Autonomous Software Fleet Observability & AST Remediation Engine",
+    id: "datapilot",
+    file: "datapilot.project",
+    name: "DataPilot",
+    tagline: "AI-Assisted Data Entry & Workflow Automation Assistant",
     description:
-      "A cyberpunk-inspired distributed telemetry console, AST-driven fault localization engine, and automated remediation runtime designed to pinpoint runtime exceptions to exact code lines and autonomously generate, test, and commit verified patches.",
-    specs: `// System Architecture & Spec: NEXIS
-Architecture: Next.js 15 App Router Frontend + FastAPI Asynchronous Backend
-AST Engine   : Tree-sitter AST syntax parsers for Python & TypeScript
-Remediation  : Local Ollama (qwen2.5-coder) / Cloud LLM with Pytest sandbox runner
-HUD & Audio  : Web Audio API synthesis engine with real-time computational sound effects`,
+      "A hybrid productivity web application combining a React frontend with a Django backend, designed for intelligent data extraction, cleaning, and structured data entry pipelines.",
+    specs: `// System Architecture & Spec: DataPilot
+Pipeline : Async file parsing -> validation regex/AI extractor -> structured export
+Tech     : React, Django REST, Pandas/Python worker queue
+Security : Local storage encryption & sanitized input ingestion`,
     editions: [
       {
         id: "web",
-        name: "Observability HUD & Fleet Console",
-        stack: "Next.js 15 + FastAPI + Tree-sitter + Tailwind v4",
+        name: "Web Application",
+        stack: "React + Django + Automation Workers",
         type: "web",
-        url: "https://nexis-taupe-kappa.vercel.app/",
-        badge: "Live Telemetry HUD",
+        url: "https://data-pilot-two.vercel.app/",
+        githubUrl: "https://github.com/danitech887",
+        badge: "Live Web App",
         points: [
-          "Live software fleet intelligence with automatic node discovery, continuous ingress health probing, and error tracing",
-          "AST-grounded fault localization using Tree-sitter syntax trees to eliminate AI hallucinations and isolate root-cause call expressions",
-          "Autonomous remediation bay with side-by-side git diff review and automated sandbox unit test verification",
-          "SAST vulnerability scanner with genuine atomic auto-bump pipeline resolving transitive lockfile dependencies",
+          "Automated document ingestion and tabular data normalisation pipeline",
+          "Validation interface with instant mismatch and error highlighting",
+          "One-click batch export to standard CSV, Excel, and database tables",
         ],
       },
     ],
@@ -278,14 +335,18 @@ const NAV = [
 
 const TERMINAL_COMMANDS = {
   whoami: PROFILE.tagline,
-  bio: "danitech (Daniel Maina) — Computer Science engineer focused on full-stack web platforms, native desktop systems (JavaFX/PyQt), and robust backend architectures.",
-  skills: "Core Stack: Python, Django, DRF, React, Java, JavaFX, PyQt5, PostgreSQL, Linux, Docker, Git.",
-  projects: "Featured: ShuleBase (Web/JavaFX/PyQt), DataPilot (AI Data Automation), Apex Logistics (Enterprise Supply Chain ERP), NEXIS (Autonomous Observability Engine).",
+  bio: "danitech (Daniel Maina) — Full-stack engineer & systems developer building high-concurrency backends, telemetry platforms, and robust web/desktop architectures.",
+  skills:
+    "Languages: Python 3.11+, TypeScript, JavaScript, SQL, Bash | Frameworks: Django, FastAPI, Next.js, React | Data Stores: PostgreSQL, SQLite, Redis | Infra: Docker, Linux (Ubuntu/Debian), Git, GitHub Actions, Nginx.",
+  projects:
+    "Featured: Nexis Engine (FastAPI/Next.js/SQLite), ShuleBase (Django/PostgreSQL/React), API Load Simulator (Python/Docker/Bash).",
+  specs:
+    "System Specs: Python 3.11+ | Django | FastAPI | Next.js | React | PostgreSQL | SQLite | Redis | Docker | Linux | Nginx",
+  quickstart:
+    "git clone https://github.com/danitech887/<repo-name>.git && cd <repo-name> # Setup: python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt # Docker: docker compose up -d --build",
   status: "Status: Online | Open to engineering opportunities & technical collaborations.",
   contact: `Email: ${PROFILE.email} | GitHub: ${PROFILE.github} | LinkedIn: ${PROFILE.linkedin} | Facebook: ${PROFILE.facebook}`,
 };
-
-
 
 function FacebookIcon({ size = 16, color = "currentColor" }) {
   return (
@@ -427,13 +488,14 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState("");
   const [copiedKey, setCopiedKey] = useState(null);
   const [selectedStackCategory, setSelectedStackCategory] = useState("all");
-  
+
   // Interactive Project Tabs state
   const [activeProjectEditions, setActiveProjectEditions] = useState({
-    shulebase: "web",
-    datapilot: "web",
-    apex: "web",
     nexis: "web",
+    shulebase: "web",
+    apiloadsim: "cli",
+    apex: "web",
+    datapilot: "web",
   });
   const [openSpecs, setOpenSpecs] = useState({});
 
@@ -542,7 +604,14 @@ export default function App() {
 
       {/* NAVIGATION BAR */}
       <nav className="tw-nav" aria-label="Main Navigation">
-        <a href="#" className="tw-logo tw-mono" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+        <a
+          href="#"
+          className="tw-logo tw-mono"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
           <img src="/logo.jpeg" alt="danitech logo" className="tw-logo-icon" />
           danitech<span style={{ color: "var(--text-dim)" }}>:~$</span>
         </a>
@@ -625,7 +694,8 @@ export default function App() {
                 {activeCommand === "whoami" ? (
                   defaultTyped
                 ) : (
-                  TERMINAL_COMMANDS[activeCommand] || "Command not found. Try one of the suggested commands below."
+                  TERMINAL_COMMANDS[activeCommand] ||
+                  "Command not found. Try one of the suggested commands below."
                 )}
               </div>
 
@@ -703,7 +773,7 @@ export default function App() {
       {/* STACK SECTION */}
       <section id="stack" className="tw-shell tw-section">
         <Reveal>
-          <SectionHeading index="02" label="requirements.txt" title="Tech Stack & Tooling" />
+          <SectionHeading index="02" label="requirements.txt" title="Core Technologies & Tooling" />
         </Reveal>
 
         {/* Stack Category Filter */}
@@ -760,7 +830,7 @@ export default function App() {
       {/* FEATURED PROJECTS */}
       <section id="projects" className="tw-shell tw-section">
         <Reveal>
-          <SectionHeading index="03" label="~/projects" title="Featured Platforms & Architectures" />
+          <SectionHeading index="03" label="~/projects" title="Featured Systems & Projects" />
         </Reveal>
 
         <div className="tw-projects-container">
@@ -802,7 +872,13 @@ export default function App() {
                             }))
                           }
                         >
-                          {ed.type === "web" ? <Globe size={14} /> : <Monitor size={14} />}
+                          {ed.type === "web" ? (
+                            <Globe size={14} />
+                          ) : ed.type === "cli" ? (
+                            <Terminal size={14} />
+                          ) : (
+                            <Monitor size={14} />
+                          )}
                           {ed.name}
                         </button>
                       ))}
@@ -816,6 +892,8 @@ export default function App() {
                         <div className="tw-edition-name">
                           {currentEdition.type === "web" ? (
                             <Globe size={16} color="var(--green)" />
+                          ) : currentEdition.type === "cli" ? (
+                            <Terminal size={16} color="var(--amber)" />
                           ) : (
                             <Monitor size={16} color="var(--cyan)" />
                           )}
@@ -845,11 +923,17 @@ export default function App() {
                           <Sparkles size={12} color="var(--amber)" /> Demo Access:
                         </span>
                         <span className="tw-demo-cred-code">
-                          username: <strong>{currentEdition.demoAccount.user}</strong> · password: <strong>{currentEdition.demoAccount.pass}</strong>
+                          username: <strong>{currentEdition.demoAccount.user}</strong> · password:{" "}
+                          <strong>{currentEdition.demoAccount.pass}</strong>
                         </span>
                         <button
                           className={`tw-copy-btn ${copiedKey === `${project.id}-demo` ? "copied" : ""}`}
-                          onClick={() => handleCopy(`${currentEdition.demoAccount.user} / ${currentEdition.demoAccount.pass}`, `${project.id}-demo`)}
+                          onClick={() =>
+                            handleCopy(
+                              `${currentEdition.demoAccount.user} / ${currentEdition.demoAccount.pass}`,
+                              `${project.id}-demo`
+                            )
+                          }
                           title="Copy Demo Credentials"
                         >
                           {copiedKey === `${project.id}-demo` ? <Check size={12} /> : <Copy size={12} />}
@@ -867,24 +951,41 @@ export default function App() {
                         {isSpecOpen ? "Hide System Architecture" : "View Architecture & Tech Spec"}
                       </button>
 
-                      {currentEdition.type === "web" && currentEdition.url ? (
-                        <a
-                          className="tw-open-btn"
-                          href={currentEdition.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Launch Web Portal <ExternalLink size={13} />
-                        </a>
-                      ) : currentEdition.type === "web" ? (
-                        <span className="tw-desktop-badge">
-                          <Circle size={7} fill="var(--green)" color="var(--green)" /> Demo link coming soon
-                        </span>
-                      ) : (
-                        <span className="tw-desktop-badge">
-                          <Monitor size={13} /> Native Desktop Build
-                        </span>
-                      )}
+                      <div className="tw-project-action-links">
+                        {currentEdition.githubUrl && (
+                          <a
+                            className="tw-source-btn"
+                            href={currentEdition.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <GitBranch size={13} /> Source Code
+                          </a>
+                        )}
+
+                        {currentEdition.type === "web" && currentEdition.url ? (
+                          <a
+                            className="tw-open-btn"
+                            href={currentEdition.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Launch Web Portal <ExternalLink size={13} />
+                          </a>
+                        ) : currentEdition.type === "cli" ? (
+                          <span className="tw-desktop-badge">
+                            <Terminal size={13} color="var(--amber)" /> CLI Docker Runner
+                          </span>
+                        ) : currentEdition.type === "web" ? (
+                          <span className="tw-desktop-badge">
+                            <Circle size={7} fill="var(--green)" color="var(--green)" /> Demo link coming soon
+                          </span>
+                        ) : (
+                          <span className="tw-desktop-badge">
+                            <Monitor size={13} /> Native Desktop Build
+                          </span>
+                        )}
+                      </div>
                     </div>
 
                     {/* EXPANDABLE SPEC DRAWER */}
@@ -907,7 +1008,7 @@ export default function App() {
       {/* CONTACT SECTION */}
       <section id="contact" className="tw-shell tw-section">
         <Reveal>
-          <SectionHeading index="04" label=".env.local" title="Connect & Inquiries" />
+          <SectionHeading index="04" label=".env.local" title="Connect & Collaborate" />
         </Reveal>
 
         <div className="tw-contact-grid">
@@ -957,10 +1058,7 @@ export default function App() {
               </div>
 
               <div className="tw-config-line-row">
-                <a
-                  className="tw-config-left"
-                  href={`mailto:${PROFILE.email}`}
-                >
+                <a className="tw-config-left" href={`mailto:${PROFILE.email}`}>
                   <Mail size={16} color="var(--violet)" />
                   <span className="key">EMAIL=</span>
                   <span className="val">{PROFILE.email}</span>
@@ -984,7 +1082,9 @@ export default function App() {
                 >
                   <FacebookIcon size={16} color="var(--violet)" />
                   <span className="key">FACEBOOK=</span>
-                  <span className="val">{PROFILE.facebook.replace("https://www.", "").replace("https://", "")}</span>
+                  <span className="val">
+                    {PROFILE.facebook.replace("https://www.", "").replace("https://", "")}
+                  </span>
                 </a>
                 <button
                   className={`tw-copy-btn ${copiedKey === "Facebook" ? "copied" : ""}`}
