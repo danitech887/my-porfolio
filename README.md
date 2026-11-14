@@ -12,7 +12,7 @@ A modern, high-performance developer portfolio and systems engineering showcase 
 | :--- | :--- |
 | **Languages** | `Python 3.11+` · `TypeScript` · `JavaScript` · `SQL` · `Bash` |
 | **Frameworks** | `Django` · `FastAPI` · `Next.js` · `React` |
-| **Data Stores** | `PostgreSQL` · `SQLite` · `Redis` |
+| **Data Stores** | `PostgreSQL` · `SQLite` · `MySQL` |
 | **Infrastructure** | `Docker` · `Linux (Ubuntu/Debian)` · `Git` · `GitHub Actions` · `Nginx` |
 
 <br/>
@@ -34,7 +34,7 @@ A modern, high-performance developer portfolio and systems engineering showcase 
   <!-- Data Stores & Infra -->
   <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
   <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite" />
-  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
   <img src="https://img.shields.io/badge/Linux_Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Linux" />
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
@@ -50,7 +50,7 @@ A modern, high-performance developer portfolio and systems engineering showcase 
 | :--- | :--- | :--- | :--- |
 | **Nexis Engine** | `FastAPI` `Next.js` `SQLite` | Real-time observability, telemetry collection, and automated synthetic user simulation. | [Source Code](https://github.com/danitech887) · [Live Demo](https://nexis-taupe-kappa.vercel.app/) |
 | **ShuleBase** | `Django` `PostgreSQL` `React` | Modular school management platform with role-based access control, CBC grading, and automated fee reconciliation. | [Source Code](https://github.com/danitech887) · [Live Demo](https://shulebase.vercel.app/) |
-| **API Load Simulator** | `Python` `Docker` `Bash` | Lightweight CLI stress-tester for benchmarking REST endpoints and measuring latency under concurrency. | [Source Code](https://github.com/danitech887) |
+| **Apex Logistics** | `Django` `PostgreSQL` `React` | Enterprise logistics, telemetry fleet tracking, statutory payroll, double-entry ledger, and warehouse inventory ERP platform. | [Source Code](https://github.com/danitech887) · [Live Demo](https://apex-logistics-beryl.vercel.app/) |
 
 ---
 
@@ -86,13 +86,12 @@ docker compose up -d --build
 
 ## ✨ Portfolio Application Features
 
-- **Floating WhatsApp Quick Reply Bot**: Interactive assistant offering guided inquiry options (*Software Projects*, *ShuleBase/Nexis*, *Technical Consultation*, *CV Requests*) before routing directly to live WhatsApp chat (`+254 757 378 376`).
+- **Floating WhatsApp Quick Connect Launcher**: Direct, high-performance WhatsApp launcher with pre-filled inquiry options (*Software Projects*, *ShuleBase*, *Technical Consultation*, *CV Requests*) connecting directly to WhatsApp (`+254 757 378 376`).
 - **Interactive Spotlight Cards**: Cursor-tracking radial glow (`--mouse-x`, `--mouse-y`) that dynamically illuminates card borders and surfaces.
 - **Hero CLI Sandbox**: Interactive simulated terminal where visitors can execute commands (`whoami`, `bio`, `skills`, `projects`, `specs`, `quickstart`, `status`, `contact`).
 - **Multi-Platform Project Showcases**:
   - **Nexis Engine**: Distributed real-time observability HUD, Tree-sitter AST fault localization, and automated synthetic user simulation.
   - **ShuleBase**: Modular educational ecosystem with interactive multi-platform tabs (*Web Edition*, *JavaFX Desktop*, *PyQt5 Desktop*) and one-click demo credentials access.
-  - **API Load Simulator**: Lightweight CLI stress-tester for benchmarking REST endpoints and measuring latency under concurrency.
   - **Apex Logistics**: Enterprise logistics, telemetry fleet tracking, statutory payroll, double-entry financial ledger, and warehouse inventory ERP platform.
   - **DataPilot**: AI-assisted workflow and data automation platform with direct portal launch.
 - **Dynamic Architecture Spec Drawer**: Expandable system breakdowns for each project detailing tech stack tiers, data layers, and security architecture.
@@ -162,7 +161,7 @@ This repository is pre-configured for seamless, zero-config deployment on **[Ver
 ## 📬 Connect & Collaborate
 
 - **Portfolio**: [danitech](https://github.com/danitech887)
-- **WhatsApp**: [+254 757 378 376 (Quick Chat & Floating Bot)](https://wa.me/254757378376)
+- **WhatsApp**: [+254 757 378 376 (Quick Chat & Direct Contact)](https://wa.me/254757378376)
 - **Email**: [danitechsoftwaresdev@gmail.com](mailto:danitechsoftwaresdev@gmail.com)
 - **GitHub**: [github.com/danitech887](https://github.com/danitech887)
 - **LinkedIn**: [linkedin.com/in/danielmaina](https://linkedin.com/in/danielmaina)

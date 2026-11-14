@@ -16,7 +16,6 @@ import {
   Copy,
   Check,
   Layers,
-  Cpu,
   Server,
   Code,
   Sparkles,
@@ -37,7 +36,7 @@ const PROFILE = {
   name: "Daniel Maina",
   role: "Full-Stack & Systems Developer",
   tagline:
-    "Building robust web platforms, telemetry systems, native desktop architectures, and automated CLI workflows.",
+    "Building robust web platforms, Python backend architectures, native desktop applications, and automated CLI workflows.",
   email: "danitechsoftwaresdev@gmail.com",
   github: "https://github.com/danitech887",
   linkedin: "https://linkedin.com/in/danielmaina",
@@ -48,9 +47,9 @@ const PROFILE = {
   location: "Kenya",
 };
 
-const ABOUT = `I am a Computer Science student and software engineer driven by building practical, high-impact systems that solve real-world operational problems. My core focus lies in building secure, end-to-end applications across full-stack web, distributed telemetry engines, native desktop architectures, and automated CLI workflows.
+const ABOUT = `I am a Computer Science student and software engineer driven by building practical, high-impact systems that solve real-world operational problems. My core focus lies in building secure, end-to-end applications across full-stack web, Python backend architectures, native desktop applications, and automated CLI workflows.
 
-Whether architecting comprehensive school management ecosystems, developing asynchronous telemetry and fault localization engines, or configuring containerized backend infrastructure on Linux with Docker and Nginx, I prioritize clean architecture, performant code, and intuitive user experiences.`;
+Whether architecting comprehensive school management ecosystems, implementing clean object-oriented domain models, or configuring containerized backend infrastructure on Linux with Docker and Nginx, I prioritize clean architecture, performant code, and intuitive user experiences.`;
 
 const HIGHLIGHTS = [
   {
@@ -60,9 +59,9 @@ const HIGHLIGHTS = [
     accent: "var(--violet)",
   },
   {
-    icon: Cpu,
-    title: "Observability & Benchmarking",
-    desc: "Real-time telemetry collection, AST-grounded fault localization, and lightweight CLI concurrency stress-testing with Docker.",
+    icon: Terminal,
+    title: "Python & Object-Oriented Architecture",
+    desc: "Clean software engineering in Python, domain-driven object-oriented modeling, class hierarchies, and scalable application logic.",
     accent: "var(--green)",
   },
   {
@@ -114,7 +113,6 @@ const STACK = [
     items: [
       "PostgreSQL",
       "SQLite",
-      "Redis",
       "MySQL",
     ],
   },
@@ -238,35 +236,6 @@ Security     : JWT-based stateless authentication & granular role permissions`,
     ],
   },
   {
-    id: "apiloadsim",
-    file: "api-load-simulator.project",
-    name: "API Load Simulator",
-    tagline: "Lightweight CLI REST Benchmarking & Concurrency Stress-Tester",
-    description:
-      "Lightweight CLI stress-tester for benchmarking REST endpoints and measuring latency under concurrency.",
-    specs: `// System Architecture & Spec: API Load Simulator
-Primary Stack: Python, Docker, Bash
-Runtime      : Python 3.11+ Asynchronous Engine (asyncio / aiohttp)
-Distribution : Docker Containerized & Standalone Bash CLI
-Capabilities : Concurrency stress-testing, latency quantiles (p50, p95, p99), error rates, RPS throughput
-Architecture : Non-blocking event loop workers with zero-overhead execution`,
-    editions: [
-      {
-        id: "cli",
-        name: "CLI & Docker Runner",
-        stack: "Python + Docker + Bash",
-        type: "cli",
-        githubUrl: "https://github.com/danitech887",
-        badge: "CLI Stress-Tester",
-        points: [
-          "Lightweight CLI stress-tester for benchmarking REST endpoints and measuring latency under concurrency",
-          "Precise latency percentile distributions (p50, p95, p99), throughput calculations, and error categorization",
-          "Containerized Docker execution with one-command spin-up and minimal environment footprint",
-        ],
-      },
-    ],
-  },
-  {
     id: "apex",
     file: "apex-logistics.project",
     name: "Apex Logistics & Supply Chain",
@@ -339,17 +308,17 @@ const NAV = [
 
 const TERMINAL_COMMANDS = {
   whoami: PROFILE.tagline,
-  bio: "danitech (Daniel Maina) — Full-stack engineer & systems developer building high-concurrency backends, telemetry platforms, and robust web/desktop architectures.",
+  bio: "danitech (Daniel Maina) — Full-stack engineer & systems developer building high-concurrency backends, clean object-oriented architectures, and robust web/desktop applications.",
   skills:
-    "Languages: Python 3.11+, TypeScript, JavaScript, SQL, Bash | Frameworks: Django, FastAPI, Next.js, React | Data Stores: PostgreSQL, SQLite, Redis | Infra: Docker, Linux (Ubuntu/Debian), Git, GitHub Actions, Nginx.",
+    "Languages: Python 3.11+, TypeScript, JavaScript, SQL, Bash | Frameworks: Django, FastAPI, Next.js, React | Data Stores: PostgreSQL, SQLite, MySQL | Infra: Docker, Linux (Ubuntu/Debian), Git, GitHub Actions, Nginx.",
   projects:
-    "Featured: Nexis Engine (FastAPI/Next.js/SQLite), ShuleBase (Django/PostgreSQL/React), API Load Simulator (Python/Docker/Bash).",
+    "Featured: Nexis Engine (FastAPI/Next.js/SQLite), ShuleBase (Django/PostgreSQL/React), Apex Logistics (Enterprise Supply Chain ERP).",
   specs:
-    "System Specs: Python 3.11+ | Django | FastAPI | Next.js | React | PostgreSQL | SQLite | Redis | Docker | Linux | Nginx",
+    "System Specs: Python 3.11+ | Django | FastAPI | Next.js | React | PostgreSQL | SQLite | MySQL | Docker | Linux | Nginx",
   quickstart:
     "git clone https://github.com/danitech887/<repo-name>.git && cd <repo-name> # Setup: python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt # Docker: docker compose up -d --build",
   whatsapp:
-    `WhatsApp Direct: ${PROFILE.whatsappFormatted} (${PROFILE.whatsappUrl}) — Chat with the floating WhatsApp quick-reply bot or click the link!`,
+    `WhatsApp Direct: ${PROFILE.whatsappFormatted} (${PROFILE.whatsappUrl}) — Quick chat directly on WhatsApp or click the link!`,
   status: "Status: Online | Open to engineering opportunities & technical collaborations.",
   contact: `Email: ${PROFILE.email} | WhatsApp: ${PROFILE.whatsappFormatted} | GitHub: ${PROFILE.github} | LinkedIn: ${PROFILE.linkedin} | Facebook: ${PROFILE.facebook}`,
 };
@@ -498,276 +467,112 @@ function SectionHeading({ index, label, title }) {
 }
 
 // ---------------------------------------------------------------------------
-// FLOATING WHATSAPP BOT COMPONENT
+// FLOATING WHATSAPP DIRECT CONNECT WIDGET
 // ---------------------------------------------------------------------------
 
-const BOT_QUICK_REPLIES = [
+const WHATSAPP_TOPICS = [
   {
-    id: "hire",
-    label: "💼 Hire / Software Project",
-    prompt: "Hi Daniel! I came across your portfolio and would like to discuss a software project or hiring opportunity.",
+    label: "💼 Discuss a Software Project",
+    text: "Hi Daniel! I came across your developer portfolio and would like to discuss a software project.",
   },
   {
-    id: "systems",
-    label: "🚀 ShuleBase / Nexis Engine",
-    prompt: "Hi Daniel! I'm interested in discussing ShuleBase / Nexis Engine and learning more about your architecture.",
+    label: "🚀 ShuleBase / Architecture Inquiry",
+    text: "Hi Daniel! I'm interested in discussing ShuleBase and learning more about your software architecture.",
   },
   {
-    id: "consult",
-    label: "⚡ Technical Consultation",
-    prompt: "Hi Daniel! I would like to schedule a technical consultation regarding full-stack backends and system architecture.",
-  },
-  {
-    id: "cv",
     label: "📄 Request CV & Experience",
-    prompt: "Hi Daniel! Reaching out from your portfolio. I'd like to review your CV and experience for potential opportunities.",
+    text: "Hi Daniel! Reaching out from your portfolio. I'd like to review your CV for potential opportunities.",
   },
   {
-    id: "say-hi",
-    label: "💬 General Inquiry / Say Hi",
-    prompt: "Hi Daniel! Just exploring your developer portfolio and wanted to connect on WhatsApp.",
+    label: "💬 Say Hi / General Inquiry",
+    text: "Hi Daniel! Just exploring your developer portfolio and wanted to connect on WhatsApp.",
   },
 ];
 
-function WhatsAppBotWidget() {
+function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showTeaser, setShowTeaser] = useState(true);
-  const [hasChosen, setHasChosen] = useState(false);
-  const [inputVal, setInputVal] = useState("");
-  const chatBodyRef = useRef(null);
-  const messageCounter = useRef(1);
-
-  const [messages, setMessages] = useState([
-    {
-      id: "intro-1",
-      sender: "bot",
-      text: "👋 Hi there! I'm Daniel's automated quick assistant. Select an option below or type a message to start our WhatsApp conversation directly:",
-      time: "Just now",
-    },
-  ]);
-
-  // Auto-scroll to bottom of chat body when messages update
-  useEffect(() => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-    }
-  }, [messages, isOpen, hasChosen]);
-
-  // Handle selecting a quick reply option
-  const handleSelectReply = (option) => {
-    const userMsg = {
-      id: `msg-user-${messageCounter.current++}`,
-      sender: "user",
-      text: option.prompt,
-      time: "Just now",
-    };
-
-    const targetUrl = `https://wa.me/${PROFILE.whatsapp}?text=${encodeURIComponent(option.prompt)}`;
-
-    const botReply = {
-      id: `msg-bot-${messageCounter.current++}`,
-      sender: "bot",
-      text: `Routing you to Daniel on WhatsApp (${PROFILE.whatsappFormatted})...`,
-      actionUrl: targetUrl,
-      actionText: "Launch WhatsApp Chat",
-      time: "Just now",
-    };
-
-    setMessages((prev) => [...prev, userMsg, botReply]);
-    setHasChosen(true);
-
-    // Open WhatsApp in new tab
-    setTimeout(() => {
-      window.open(targetUrl, "_blank", "noopener,noreferrer");
-    }, 600);
-  };
-
-  // Handle custom typed message
-  const handleSendCustom = (e) => {
-    if (e) e.preventDefault();
-    const text = inputVal.trim();
-    if (!text) return;
-
-    const userMsg = {
-      id: `msg-user-${messageCounter.current++}`,
-      sender: "user",
-      text,
-      time: "Just now",
-    };
-
-    const targetUrl = `https://wa.me/${PROFILE.whatsapp}?text=${encodeURIComponent(text)}`;
-
-    const botReply = {
-      id: `msg-bot-${messageCounter.current++}`,
-      sender: "bot",
-      text: `Got it! Connecting you with Daniel on WhatsApp (${PROFILE.whatsappFormatted})...`,
-      actionUrl: targetUrl,
-      actionText: "Launch WhatsApp Chat",
-      time: "Just now",
-    };
-
-    setMessages((prev) => [...prev, userMsg, botReply]);
-    setInputVal("");
-    setHasChosen(true);
-
-    setTimeout(() => {
-      window.open(targetUrl, "_blank", "noopener,noreferrer");
-    }, 600);
-  };
-
-  // Reset conversation to initial options
-  const handleReset = () => {
-    setMessages([
-      {
-        id: "intro-1",
-        sender: "bot",
-        text: "👋 Pick another option below or type a message to chat directly with Daniel on WhatsApp:",
-        time: "Just now",
-      },
-    ]);
-    setHasChosen(false);
-    setInputVal("");
-  };
 
   return (
-    <div className="tw-wa-widget-container" aria-label="WhatsApp Quick Reply Bot">
-      {/* Teaser pill when closed */}
-      {!isOpen && showTeaser && (
-        <div
-          className="tw-wa-pill-teaser"
-          onClick={() => {
-            setIsOpen(true);
-            setShowTeaser(false);
-          }}
-          title="Click to open WhatsApp Bot"
-        >
-          <span className="tw-wa-online-dot" style={{ position: "static", width: 8, height: 8 }} />
-          <span className="tw-wa-pill-text">Quick WhatsApp Bot</span>
-          <span className="tw-wa-pill-badge">Online</span>
-        </div>
-      )}
-
-      {/* Chat Window */}
+    <aside className="tw-wa-widget-container" aria-label="WhatsApp Quick Contact">
       {isOpen && (
-        <div className="tw-wa-chat-window">
-          {/* Header */}
-          <div className="tw-wa-chat-header">
+        <div className="tw-wa-popover" role="dialog" aria-label="WhatsApp Quick Inquiries">
+          <div className="tw-wa-popover-header">
             <div className="tw-wa-header-left">
               <div className="tw-wa-avatar">
                 <img src="/logo.jpeg" alt="Daniel Maina" className="tw-wa-avatar-img" />
               </div>
               <div className="tw-wa-header-info">
-                <span className="tw-wa-header-title">Daniel Maina (danitech)</span>
-                <span className="tw-wa-header-sub">
-                  <span className="tw-wa-sub-pulse" />
-                  Bot Online · Quick Routing
+                <span className="tw-wa-header-title">Daniel Maina</span>
+                <span className="tw-wa-header-status">
+                  <span className="tw-wa-status-dot" />
+                  Available on WhatsApp
                 </span>
               </div>
             </div>
             <button
               className="tw-wa-close-btn"
               onClick={() => setIsOpen(false)}
-              aria-label="Close Chat Window"
+              aria-label="Close"
             >
               <X size={16} />
             </button>
           </div>
 
-          {/* Messages Body */}
-          <div className="tw-wa-chat-body" ref={chatBodyRef}>
-            {messages.map((msg) => (
-              <div key={msg.id} className={`tw-wa-msg-row ${msg.sender}`}>
-                <div className={`tw-wa-bubble ${msg.sender}`}>
-                  <p style={{ margin: 0 }}>{msg.text}</p>
-                  {msg.actionUrl && (
-                    <a
-                      className="tw-wa-action-launch-btn"
-                      href={msg.actionUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <WhatsAppIcon size={16} color="#080c10" />
-                      {msg.actionText}
-                    </a>
-                  )}
-                </div>
-                <span className="tw-wa-time">{msg.time}</span>
-              </div>
-            ))}
-
-            {/* Quick Replies Options */}
-            {!hasChosen && (
-              <div style={{ marginTop: 4 }}>
-                <div className="tw-wa-quick-replies-label">Suggested Quick Replies:</div>
-                <div className="tw-wa-quick-chips">
-                  {BOT_QUICK_REPLIES.map((option) => (
-                    <button
-                      key={option.id}
-                      className="tw-wa-chip"
-                      onClick={() => handleSelectReply(option)}
-                    >
-                      <span>{option.label}</span>
-                      <ChevronRight size={14} className="tw-wa-chip-arrow" />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Reset button if user already picked a choice */}
-            {hasChosen && (
-              <button className="tw-wa-reset-btn" onClick={handleReset}>
-                ↺ Select another topic
-              </button>
-            )}
+          <div className="tw-wa-popover-body">
+            <p className="tw-wa-popover-intro">
+              Start a direct conversation on WhatsApp with a pre-filled inquiry or launch a direct chat:
+            </p>
+            <div className="tw-wa-quick-chips">
+              {WHATSAPP_TOPICS.map((topic, i) => (
+                <a
+                  key={i}
+                  className="tw-wa-chip-link"
+                  href={`https://wa.me/${PROFILE.whatsapp}?text=${encodeURIComponent(topic.text)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span>{topic.label}</span>
+                  <ArrowUpRight size={14} className="tw-wa-chip-arrow" />
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Footer Input */}
-          <div className="tw-wa-chat-footer">
-            <form className="tw-wa-input-row" onSubmit={handleSendCustom}>
-              <input
-                type="text"
-                className="tw-wa-input"
-                placeholder="Type your message..."
-                value={inputVal}
-                onChange={(e) => setInputVal(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="tw-wa-send-btn"
-                disabled={!inputVal.trim()}
-                title="Send to WhatsApp"
-                aria-label="Send"
-              >
-                <Send size={15} />
-              </button>
-            </form>
+          <div className="tw-wa-popover-footer">
             <a
-              className="tw-wa-direct-link"
+              className="tw-wa-direct-launch-btn"
               href={PROFILE.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
             >
-              <WhatsAppIcon size={12} color="#25D366" /> Direct WhatsApp: {PROFILE.whatsappFormatted}
+              <WhatsAppIcon size={16} color="#080c10" />
+              <span>Direct WhatsApp Chat</span>
             </a>
           </div>
         </div>
       )}
 
       {/* Floating Trigger Button */}
-      <button
-        className="tw-wa-trigger-btn"
-        onClick={() => {
-          setIsOpen((prev) => !prev);
-          setShowTeaser(false);
-        }}
-        aria-label="Toggle WhatsApp Quick Reply Bot"
-        title="Chat with WhatsApp Bot"
-      >
-        {isOpen ? <X size={24} /> : <WhatsAppIcon size={28} color="#ffffff" />}
-        <span className="tw-wa-online-dot" />
-      </button>
-    </div>
+      <div className="tw-wa-trigger-wrapper">
+        {!isOpen && (
+          <span className="tw-wa-hover-pill">
+            <span className="tw-wa-pill-dot" />
+            Chat on WhatsApp
+          </span>
+        )}
+        <button
+          className="tw-wa-trigger-btn"
+          onClick={() => setIsOpen((v) => !v)}
+          aria-label="Toggle WhatsApp Quick Chat"
+          title="Chat on WhatsApp"
+        >
+          {isOpen ? <X size={22} /> : <WhatsAppIcon size={26} color="#ffffff" />}
+          <span className="tw-wa-badge-dot" />
+        </button>
+      </div>
+    </aside>
   );
 }
 
@@ -786,7 +591,6 @@ export default function App() {
   const [activeProjectEditions, setActiveProjectEditions] = useState({
     nexis: "web",
     shulebase: "web",
-    apiloadsim: "cli",
     apex: "web",
     datapilot: "web",
   });
@@ -895,8 +699,8 @@ export default function App() {
         </div>
       )}
 
-      {/* FLOATING WHATSAPP BOT */}
-      <WhatsAppBotWidget />
+      {/* FLOATING WHATSAPP QUICK CHAT WIDGET */}
+      <WhatsAppWidget />
 
       {/* NAVIGATION BAR */}
       <nav className="tw-nav" aria-label="Main Navigation">
