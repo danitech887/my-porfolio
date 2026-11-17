@@ -25,7 +25,11 @@ import {
   FileText,
   Mail,
   CheckCircle2,
-  Send,
+  Image,
+  Maximize2,
+  ChevronLeft,
+  ZoomIn,
+  Eye,
 } from "lucide-react";
 
 // ---------------------------------------------------------------------------
@@ -299,6 +303,104 @@ Security : Local storage encryption & sanitized input ingestion`,
   },
 ];
 
+
+// ---------------------------------------------------------------------------
+// SHULEBASE PYQT5 DESKTOP CLIENT SCREENSHOT GALLERY DATA
+// ---------------------------------------------------------------------------
+
+const PYQT5_GALLERY_SCREENS = [
+  {
+    id: "dashboard",
+    title: "Operational Dashboard",
+    fileName: "dashboard.png",
+    src: "/pyqt5-img/dashboard.png",
+    category: "Executive KPI",
+    description:
+      "Central operational hub showing real-time student enrollment statistics, active teachers, daily attendance rates, and quick shortcuts to all administrative modules.",
+  },
+  {
+    id: "academics",
+    title: "Academics & Stream Management",
+    fileName: "academics.png",
+    src: "/pyqt5-img/academics.png",
+    category: "Curriculum",
+    description:
+      "Academic curriculum configuration interface for organizing grade levels, managing streams, assigning class teachers, and tracking student capacity.",
+  },
+  {
+    id: "marks",
+    title: "CBC Marks & Performance Evaluation",
+    fileName: "marks.png",
+    src: "/pyqt5-img/marks.png",
+    category: "Grading",
+    description:
+      "Comprehensive marks entry grid for recording learner scores across CBC learning areas, computing totals and averages, and generating official report cards.",
+  },
+  {
+    id: "attendance",
+    title: "Student Attendance Register",
+    fileName: "attendance.png",
+    src: "/pyqt5-img/attendance.png",
+    category: "Roll Call",
+    description:
+      "Daily attendance tracking module with rapid present/absent toggling, automated absentee records, and term-wide percentage calculations.",
+  },
+  {
+    id: "fee-payments",
+    title: "Fee Payments & Ledger Tracking",
+    fileName: "fee payments.png",
+    src: "/pyqt5-img/fee-payments.png",
+    category: "Accounts",
+    description:
+      "Student financial ledger supporting multi-channel fee entry, real-time balance calculations, payment history auditing, and printable payment receipts.",
+  },
+  {
+    id: "teachers-role",
+    title: "Faculty Directory & Roles",
+    fileName: "teachers role.png",
+    src: "/pyqt5-img/teachers-role.png",
+    category: "Staff Directory",
+    description:
+      "Educator roster management for configuring faculty credentials, departmental assignments, class allocations, and role-based access levels.",
+  },
+  {
+    id: "teaching-progress",
+    title: "Teaching Progress & Syllabus Milestones",
+    fileName: "teaching progress.png",
+    src: "/pyqt5-img/teaching-progress.png",
+    category: "Academic Pacing",
+    description:
+      "Curriculum coverage tracker visualizing syllabus milestone completion against term schemes of work to maintain consistent academic pacing.",
+  },
+  {
+    id: "leave",
+    title: "Staff Leave & Absence Management",
+    fileName: "leave.png",
+    src: "/pyqt5-img/leave.png",
+    category: "HR Operations",
+    description:
+      "Human resource management dialog for logging staff leave requests, recording approval workflows, and tracking remaining vacation balances.",
+  },
+  {
+    id: "account",
+    title: "Administrator Account Settings",
+    fileName: "account.png",
+    src: "/pyqt5-img/account.png",
+    category: "User Profile",
+    description:
+      "Personal administrator profile settings allowing operators to update account credentials, contact information, and desktop interface preferences.",
+  },
+  {
+    id: "security",
+    title: "Security & Authentication Controls",
+    fileName: "security.png",
+    src: "/pyqt5-img/security.png",
+    category: "Authentication",
+    description:
+      "System security management module for password encryption, user credential resets, session safeguards, and administrative permissions.",
+  },
+];
+
 const NAV = [
   { id: "about", label: "about" },
   { id: "stack", label: "stack" },
@@ -470,6 +572,204 @@ function SectionHeading({ index, label, title }) {
 // FLOATING WHATSAPP DIRECT CONNECT WIDGET
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// SHULEBASE PYQT5 DESKTOP UI SCREENSHOT GALLERY VIEWER
+// ---------------------------------------------------------------------------
+
+function PyQt5GalleryViewer({ onClose }) {
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  const activeScreen = PYQT5_GALLERY_SCREENS[selectedIdx];
+
+  const handlePrev = (e) => {
+    if (e) e.stopPropagation();
+    setSelectedIdx((prev) => (prev === 0 ? PYQT5_GALLERY_SCREENS.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e) => {
+    if (e) e.stopPropagation();
+    setSelectedIdx((prev) => (prev === PYQT5_GALLERY_SCREENS.length - 1 ? 0 : prev + 1));
+  };
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+      if (e.key === "ArrowLeft") setSelectedIdx((prev) => (prev === 0 ? PYQT5_GALLERY_SCREENS.length - 1 : prev - 1));
+      if (e.key === "ArrowRight") setSelectedIdx((prev) => (prev === PYQT5_GALLERY_SCREENS.length - 1 ? 0 : prev + 1));
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxOpen]);
+
+  return (
+    <div className="tw-gallery-drawer">
+      {/* Header Bar */}
+      <div className="tw-gallery-stage-header">
+        <div className="tw-gallery-stage-title-group">
+          <span className="tw-gallery-stage-index">
+            Screen {String(selectedIdx + 1).padStart(2, "0")} / {String(PYQT5_GALLERY_SCREENS.length).padStart(2, "0")}
+          </span>
+          <span className="tw-gallery-stage-tag">{activeScreen.category}</span>
+          <span style={{ color: "var(--text-dim)" }}>·</span>
+          <span style={{ color: "var(--amber)", fontFamily: "JetBrains Mono" }}>{activeScreen.fileName}</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <button
+            className="tw-gallery-fullscreen-btn"
+            onClick={() => setLightboxOpen(true)}
+            title="Open Fullscreen Lightbox"
+          >
+            <Maximize2 size={12} />
+            <span>Fullscreen</span>
+          </button>
+          {onClose && (
+            <button
+              className="tw-gallery-fullscreen-btn"
+              onClick={onClose}
+              title="Close UI Gallery"
+            >
+              <X size={12} />
+              <span>Hide</span>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Main Screen Viewport */}
+      <div
+        className="tw-gallery-viewport"
+        onClick={() => setLightboxOpen(true)}
+        title="Click to expand screenshot in full resolution"
+      >
+        <img
+          src={activeScreen.src}
+          alt={activeScreen.title}
+          className="tw-gallery-main-img"
+          loading="lazy"
+        />
+        <div className="tw-gallery-viewport-overlay">
+          <ZoomIn size={12} color="var(--green)" />
+          <span>Click to Zoom</span>
+        </div>
+      </div>
+
+      {/* Info & Navigator Bar */}
+      <div className="tw-gallery-info-bar">
+        <div className="tw-gallery-info-content">
+          <h4 className="tw-gallery-screen-title">
+            {activeScreen.title}
+            <span className="tw-gallery-filename-badge">{activeScreen.fileName}</span>
+          </h4>
+          <p className="tw-gallery-screen-desc">{activeScreen.description}</p>
+        </div>
+
+        <div className="tw-gallery-nav-controls">
+          <button
+            className="tw-gallery-nav-btn"
+            onClick={handlePrev}
+            aria-label="Previous screenshot"
+            title="Previous (Left)"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <span className="tw-gallery-nav-counter">
+            {selectedIdx + 1} / {PYQT5_GALLERY_SCREENS.length}
+          </span>
+          <button
+            className="tw-gallery-nav-btn"
+            onClick={handleNext}
+            aria-label="Next screenshot"
+            title="Next (Right)"
+          >
+            <ChevronRight size={16} />
+          </button>
+        </div>
+      </div>
+
+      {/* Interactive Thumbnail Strip */}
+      <div className="tw-gallery-thumb-strip">
+        {PYQT5_GALLERY_SCREENS.map((sc, idx) => (
+          <button
+            key={sc.id}
+            className={`tw-gallery-thumb-btn ${idx === selectedIdx ? "active" : ""}`}
+            onClick={() => setSelectedIdx(idx)}
+            title={`${sc.title} (${sc.fileName})`}
+          >
+            <img src={sc.src} alt={sc.title} className="tw-gallery-thumb-img" loading="lazy" />
+            <span className="tw-gallery-thumb-label">{sc.fileName}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div
+          className="tw-lightbox-backdrop"
+          onClick={() => setLightboxOpen(false)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="tw-lightbox-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="tw-lightbox-header">
+              <div className="tw-lightbox-title-wrap">
+                <span className="tw-gallery-stage-index">
+                  {selectedIdx + 1} / {PYQT5_GALLERY_SCREENS.length}
+                </span>
+                <h3 className="tw-lightbox-title">{activeScreen.title}</h3>
+                <span className="tw-gallery-filename-badge">{activeScreen.fileName}</span>
+              </div>
+              <button
+                className="tw-lightbox-close-btn"
+                onClick={() => setLightboxOpen(false)}
+                aria-label="Close Lightbox"
+                title="Close (Esc)"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <div className="tw-lightbox-viewport">
+              <button
+                className="tw-lightbox-side-nav prev"
+                onClick={handlePrev}
+                aria-label="Previous image"
+                title="Previous (Left Arrow)"
+              >
+                <ChevronLeft size={22} />
+              </button>
+
+              <img
+                src={activeScreen.src}
+                alt={activeScreen.title}
+                className="tw-lightbox-img"
+              />
+
+              <button
+                className="tw-lightbox-side-nav next"
+                onClick={handleNext}
+                aria-label="Next image"
+                title="Next (Right Arrow)"
+              >
+                <ChevronRight size={22} />
+              </button>
+            </div>
+
+            <div className="tw-lightbox-footer">
+              <p className="tw-lightbox-desc">{activeScreen.description}</p>
+              <div style={{ display: "flex", gap: "6px" }}>
+                <span className="tw-gallery-stage-tag">{activeScreen.category}</span>
+                <span className="tw-gallery-filename-badge">PyQt5 Native GUI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const WHATSAPP_TOPICS = [
   {
     label: "💼 Discuss a Software Project",
@@ -595,6 +895,7 @@ export default function App() {
     datapilot: "web",
   });
   const [openSpecs, setOpenSpecs] = useState({});
+  const [shulebaseGalleryOpen, setShulebaseGalleryOpen] = useState(false);
 
   // Hero Terminal Sandbox state
   const [activeCommand, setActiveCommand] = useState("whoami");
@@ -1042,7 +1343,33 @@ export default function App() {
                       </div>
                     )}
 
+                    {project.id === "shulebase" && currentEdition.id === "pyqt5" && (
+                      <div className="tw-gallery-banner-pill">
+                        <div className="tw-gallery-banner-left">
+                          <Image size={15} color="var(--green)" />
+                          <span><strong>10 Desktop UI Screenshots</strong> available for this PyQt5 client</span>
+                        </div>
+                        <button
+                          className="tw-gallery-toggle-btn"
+                          onClick={() => setShulebaseGalleryOpen((v) => !v)}
+                        >
+                          <Eye size={13} />
+                          <span>{shulebaseGalleryOpen ? "Hide Screens" : "Explore Screenshots (10)"}</span>
+                        </button>
+                      </div>
+                    )}
+
                     <div className="tw-project-action-row">
+                      {project.id === "shulebase" && currentEdition.id === "pyqt5" && (
+                        <button
+                          className="tw-gallery-toggle-btn"
+                          onClick={() => setShulebaseGalleryOpen((v) => !v)}
+                        >
+                          <Image size={13} />
+                          {shulebaseGalleryOpen ? "Hide UI Gallery" : "View Desktop UI Gallery (10 Screens)"}
+                        </button>
+                      )}
+
                       <button
                         className="tw-spec-toggle-btn"
                         onClick={() => toggleSpec(project.id)}
@@ -1087,6 +1414,11 @@ export default function App() {
                         )}
                       </div>
                     </div>
+
+                    {/* PYQT5 SCREENSHOT GALLERY DRAWER */}
+                    {project.id === "shulebase" && currentEdition.id === "pyqt5" && shulebaseGalleryOpen && (
+                      <PyQt5GalleryViewer onClose={() => setShulebaseGalleryOpen(false)} />
+                    )}
 
                     {/* EXPANDABLE SPEC DRAWER */}
                     {isSpecOpen && (

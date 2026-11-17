@@ -91,7 +91,7 @@ docker compose up -d --build
 - **Hero CLI Sandbox**: Interactive simulated terminal where visitors can execute commands (`whoami`, `bio`, `skills`, `projects`, `specs`, `quickstart`, `status`, `contact`).
 - **Multi-Platform Project Showcases**:
   - **Nexis Engine**: Distributed real-time observability HUD, Tree-sitter AST fault localization, and automated synthetic user simulation.
-  - **ShuleBase**: Modular educational ecosystem with interactive multi-platform tabs (*Web Edition*, *JavaFX Desktop*, *PyQt5 Desktop*) and one-click demo credentials access.
+  - **ShuleBase**: Modular educational ecosystem with interactive multi-platform tabs (*Web Edition*, *JavaFX Desktop*, *PyQt5 Desktop*), an interactive 10-screen PyQt5 native desktop GUI gallery with lightbox inspection, and one-click demo credentials access.
   - **Apex Logistics**: Enterprise logistics, telemetry fleet tracking, statutory payroll, double-entry financial ledger, and warehouse inventory ERP platform.
   - **DataPilot**: AI-assisted workflow and data automation platform with direct portal launch.
 - **Dynamic Architecture Spec Drawer**: Expandable system breakdowns for each project detailing tech stack tiers, data layers, and security architecture.
